@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import './App.css'
 import Header from './components/Header';
@@ -41,8 +40,8 @@ function App() {
   });
 
   console.log(uniqueSongs);
-  
-  
+
+
   return (<>
 
     <nav>
@@ -59,12 +58,13 @@ function App() {
       </section>
       <section className='mid' ></section>
       <section className='right_container'>
-      
-        {uniqueSongs.map((data,index) => {
+
+        {uniqueSongs.map((data, index) => {
+          console.log(data.albumimg); // Check if this logs the correct image URLs
           return <Card isArtist albmimg={data.albumimg} title={data.artist} key={index} />;
         })}
-        
-<p>lorem1avavavavavawvaqvawvav</p>
+
+        <p>lorem1avavavavavawvaqvawvav</p>
 
       </section>
     </section>
