@@ -1,4 +1,4 @@
-.const song = [
+const song = [
   { name: "be alright.mp3", artist: "Dean Lewis" },
   { name: "hurtless.mp3", artist: "Dean Lewis" },
   { name: "Little do you know.mp3", artist: "Alex & Sierra" },
@@ -21,8 +21,8 @@ export const songs = song.map((file) => {
   const songName = file.name.replace(".mp3", "");
   return {
     name: songName,
-    source: `./assets/audio/${file.name}`,
-    image: `./assets/imagess/${songName}.jpg`,
+    source: `./src/assets/audio/${file.name}`,
+    image: `./src/assets/imagess/${songName}.jpg`,
   };
 });
 
@@ -32,8 +32,8 @@ export const artistSongs = song.map((file) => {
   return {
     artist: artistName,
     song: songName,
-    source: `./assets/audio/${file.name}`,
-    albumimg :`./assets/artistImg/${artistName}.jpg`,
+    source: `./src/assets/audio/${file.name}`,
+    albumimg :`./src/assets/artistImg/${artistName}.jpg`,
   };
 });
 
