@@ -18,25 +18,22 @@ const song = [
 ];
 
 export const songs = song.map((file) => {
-  const songName = file.name.replace(".mp3", "");
+  const songName = file.name.replace(".mp3", "").replace(/ /g, "%20");
   return {
     name: songName,
-    source: `/src/assets/audio/${file.name}`,
+    source: `/src/assets/audio/${file.name.replace(/ /g, "%20")}`,
     image: `/src/assets/imagess/${songName}.jpg`,
   };
 });
 
 export const artistSongs = song.map((file) => {
-  const artistName = file.artist;
-  const songName = file.name.replace(".mp3", "");
-
-  
+  const artistName = file.artist.replace(/ /g, "%20");
+  const songName = file.name.replace(".mp3", "").replace(/ /g, "%20");
 
   return {
     artist: artistName,
     song: songName,
-    source: `/src/assets/audio/${file.name}`,
+    source: `/src/assets/audio/${file.name.replace(/ /g, "%20")}`,
     albumimg: `/src/assets/artistImg/${artistName}.jpg`,
   };
 });
-
