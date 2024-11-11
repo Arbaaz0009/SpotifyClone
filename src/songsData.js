@@ -28,12 +28,15 @@ export const songs = song.map((file) => {
 
 export const artistSongs = song.map((file) => {
   const artistName = file.artist;
-  const songName = file.name.replace(".mp3", "");
+  const songNames = file.name.replace(".mp3", "");
+  const songName = encodeURIComponent(songNames);
+  
+
   return {
     artist: artistName,
     song: songName,
     source: `/src/assets/audio/${file.name}`,
-    albumimg :`/src/assets/artistImg/${artistName}.jpg`,
+    albumimg: `/src/assets/artistImg/${artistName}.jpg`,
   };
 });
 

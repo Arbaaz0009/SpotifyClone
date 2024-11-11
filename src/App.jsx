@@ -6,7 +6,7 @@ import Playlist from './components/playlist';
 import heartimg from './assets/svgs/heartimg.png'
 import Card from './components/thumnailCard'
 import { songs, artistSongs } from './songsData'
-import Eminem from './assets/artistImg/Eminem.jpg'
+import Eminem from './assets/artistImg/Alex & Sierra.jpg'
 
 function App() {
   const [setPlaylist, addPlaylist] = useState([
@@ -39,7 +39,7 @@ function App() {
     return false;
   });
 
-  console.log(uniqueSongs);
+  console.log(Eminem);
 
 
   return (<>
@@ -60,7 +60,8 @@ function App() {
       <section className='right_container'>
 
         {uniqueSongs.map((data, index) => {
-          console.log(data.albumimg); // Check if this logs the correct image URLs
+          console.log(data.albumimg);
+          
           return <Card isArtist albmimg={data.albumimg} title={data.artist} key={index} />;
         })}
   

@@ -7,9 +7,6 @@ const thumnail_card = ({ albmimg, isArtist, title }) => {
     let imgclass = 'cardlogo';
     const [ishovered, setIsHovered] = useState(false);
 
-
-    console.log(albmimg);
-
     // return (<img className={imgclass} src={TomOdell} alt="cardlogo" />);
     return (
         <>
