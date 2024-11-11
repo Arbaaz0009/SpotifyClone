@@ -39,6 +39,9 @@ function App() {
     }
     return false;
   });
+
+  console.log(uniqueSongs);
+  
   
   return (<>
 
