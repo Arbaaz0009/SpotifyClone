@@ -36,7 +36,7 @@ export const artistSongs = song.map((file) => {
     artist: artistName,
     song: songName,
     source: `/src/assets/audio/${file.name}`,
-    albumimg: `/assets/${artistName}.jpg`,
+    albumimg: `/src/assets/artistImg/${artistName}.jpg`,
   };
 });
 
