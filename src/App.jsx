@@ -3,17 +3,17 @@ import './App.css'
 import Header from './components/Header';
 import Library from './components/Library';
 import Playlist from './components/playlist';
-import heartimg from './assets/svgs/heartimg.png'
+// import heartimg from './assets/svgs/heartimg.png'
 import Card from './components/thumnailCard'
 import { songs, artistSongs } from './songsData'
-import Eminem from './assets/artistImg/Alex & Sierra.jpg'
+// import Eminem from './assets/artistImg/Alex & Sierra.jpg'
 
 function App() {
   const [setPlaylist, addPlaylist] = useState([
     {
       isArtist: false,
       title: "liked Songs",
-      albumimg: heartimg,
+      albumimg: '/svgs/heartimg.png',
     },
 
   ]);
@@ -39,7 +39,7 @@ function App() {
     return false;
   });
 
-  console.log(Eminem);
+  
 
 
   return (<>

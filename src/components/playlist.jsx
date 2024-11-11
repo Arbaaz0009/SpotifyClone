@@ -1,8 +1,8 @@
 import React from 'react'
-import defaultimg from '../assets/svgs/music.png'
+// import defaultimg from '/svgs/music.png'
 
 const playlist = ({ title, albumimg, isArtist },key) => {
-  let imgLogo = (albumimg === undefined) ?defaultimg:albumimg;
+  let imgLogo = (albumimg === undefined) ?'/svgs/music.png':albumimg;
   let logo =<span className='logo'><img src={imgLogo} /></span>
  
     
