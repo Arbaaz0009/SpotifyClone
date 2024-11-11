@@ -6,7 +6,7 @@ import Playlist from './components/playlist';
 import heartimg from './assets/svgs/heartimg.png'
 import Card from './components/thumnailCard'
 import { songs, artistSongs } from './songsData'
-
+import Eminem from './assets/artistImg/Eminem.jpg'
 
 function App() {
   const [setPlaylist, addPlaylist] = useState([
@@ -63,7 +63,7 @@ function App() {
           console.log(data.albumimg); // Check if this logs the correct image URLs
           return <Card isArtist albmimg={data.albumimg} title={data.artist} key={index} />;
         })}
-
+  <img src={Eminem} alt="" srcset="" />
        
 
       </section>
