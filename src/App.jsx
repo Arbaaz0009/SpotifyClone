@@ -63,7 +63,7 @@ function App() {
           console.log(data.albumimg); // Check if this logs the correct image URLs
           return <Card isArtist albmimg={data.albumimg} title={data.artist} key={index} />;
         })}
-  <img src={Eminem} alt="" srcset="" />
+  
        
 
       </section>
