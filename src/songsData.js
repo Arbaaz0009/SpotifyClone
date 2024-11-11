@@ -30,8 +30,6 @@ export const artistSongs = song.map((file) => {
   const artistName = file.artist;
   const songName = file.name.replace(".mp3", "");
 
-  
-
   return {
     artist: artistName,
     song: songName,
@@ -39,4 +37,3 @@ export const artistSongs = song.map((file) => {
     albumimg: `/src/assets/artistImg/${artistName}.jpg`,
   };
 });
-
