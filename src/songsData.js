@@ -28,8 +28,8 @@ export const songs = song.map((file) => {
 
 export const artistSongs = song.map((file) => {
   const artistName = file.artist;
-  const songNames = file.name.replace(".mp3", "");
-  const songName = encodeURIComponent(songNames);
+  const songName = file.name.replace(".mp3", "");
+
   
 
   return {
