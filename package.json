@@ -6,7 +6,6 @@
   "homepage": "./",
   "scripts": {
     "build": "npm run generate-html && vite build",
-    "generate-html":"cp index.html dist/",
     "dev": "vite",
     "lint": "eslint .",
     "preview": "vite preview"
