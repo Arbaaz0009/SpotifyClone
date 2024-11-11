@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "./",
   "scripts": {
     "build": "npm run generate-html && vite build",
     "generate-html":"cp index.html dist/",
