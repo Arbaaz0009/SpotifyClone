@@ -64,7 +64,7 @@ function App() {
           return <Card isArtist albmimg={data.albumimg} title={data.artist} key={index} />;
         })}
         
-
+<p>lorem1avavavavavawvaqvawvav</p>
 
       </section>
     </section>
