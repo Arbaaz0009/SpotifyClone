@@ -29,11 +29,37 @@ export const songs = song.map((file) => {
 export const artistSongs = song.map((file) => {
   const artistName = file.artist;
   const songName = file.name.replace(".mp3", "");
-
   return {
     artist: artistName,
     song: songName,
     source: `/src/assets/audio/${file.name}`,
-    albumimg: `/src/assets/artistImg/${artistName}.jpg`,
+    albumimg :`/src/assets/artistImg/${artistName}.jpg`,
   };
 });
+
+// console.log(artistSongs);
+
+// const groupSongsByArtist = (songs) => {
+//     const artistMap = {};
+
+//     song.forEach(song => {
+//         const artist = song.artist;
+//         const songName = song.name;
+//         const songPath = `/src/assets/audio/${songName}`;
+//         const albumimg = `/src/assets/artist_img/${artist}.jpg`;
+
+//         if (!artistMap[artist]) {
+//             artistMap[artist] = [];
+//         }
+
+//         artistMap[artist].push({
+//             song: songName,
+//             path: songPath,
+//             album:albumimg
+//         });
+//     });
+
+//     return artistMap;
+// };
+
+// export const artistSongs = groupSongsByArtist(song);
