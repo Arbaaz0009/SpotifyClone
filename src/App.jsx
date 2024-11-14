@@ -2,8 +2,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Home from "./Pages/home";
-import Login from "./Pages/Auth/login";
+import Home from "./Pages/Home";
+import Login from "./Pages/Auth/Login";
 import SignUp from "./Pages/Auth/SignUp";
 
 
