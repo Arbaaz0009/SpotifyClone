@@ -29,7 +29,7 @@ const SignUp = () => {
                 <h2>Register to Spotify</h2>
                 <div>
                     <label htmlFor="emailId">Email:</label>
-                    <input type="email" name="email" id="emailId" required />
+               e     <input type="email" name="" id="emailId" required />
                 </div>
                 <div>
                     <label htmlFor="password">Password:</label>
