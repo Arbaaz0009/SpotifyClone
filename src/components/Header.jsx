@@ -3,9 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faMagnifyingGlass, faXmark, } from '@fortawesome/free-solid-svg-icons'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 import { useState } from 'react';
-import ReactDOM from 'react-dom';
-import Login from '../Pages/Auth/login';
-import SignUp from '../Pages/Auth/SignUp';
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -13,8 +10,6 @@ export default function Header({ ...props }) {
     const navigate = useNavigate();
     const [searchvalue, setsearchvalue] = useState('');
     const [searchactive, setsearchbox] = useState('clearsearch');
-    // const [loginPage, setLoginPage] = useState(false);
-    // const [signUpPage, setSignUpPage] = useState(false);
 
 
 
@@ -34,12 +29,7 @@ export default function Header({ ...props }) {
         setsearchvalue('');
     }
 
-    // const Portal =({children }) =>{
-    //     return ReactDOM.createPortal(
-    //         children,
-    //         document.body // or another suitable portal root element
-    //     )
-    // };
+    
     function toggleLogin() {
         navigate('/login');
     }
@@ -75,17 +65,7 @@ export default function Header({ ...props }) {
                 <button className='signinbtn' onClick={ toggleLogin}>Log in</button>
             </span>
 
-            {/* {loginPage &&
-                <Portal>
-                    <Login />
-                </Portal>
-            }
-            {signUpPage &&
-                <Portal>
-                    <SignUp />
-                </Portal>
-            } */}
-
+          
 
         </nav>
     </>);
