@@ -5,6 +5,7 @@ import Library from '../components/Library';
 import Playlist from '../components/playlist';
 import Card from '../components/thumnailCard'
 import { songs, artistSongs } from '../songsData'
+import PlayBar from '../components/PlayBar';
 
 
 function Home() {
@@ -57,22 +58,17 @@ function Home() {
       </section>
       <section className='mid' ></section>
       <section className='right_container'>
-
-        {uniqueSongs.map((data, index) => {
+        {/* {uniqueSongs.map((data, index) => {
           return <Card isArtist albmimg={data.albumimg} title={data.artist} key={index} />;
-        })}
-
-
-
+        })} */}
+        {
+          songs.map((data, index) => {
+            return <Card isArtist isSong title={data.name} key={index} albmimg={data.image}/>;
+          })
+        }
       </section>
+      <PlayBar/>
     </section>
-
-
-
-
-
-
-
   </>);
 }
 

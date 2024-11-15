@@ -1,9 +1,5 @@
 import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlay } from '@fortawesome/free-solid-svg-icons'
-// import playbtn from '../assets/svgs/playbtn.png'
-// import TomOdell from '../assets/artistImg/Tom Odell.jpg'
-const thumnail_card = ({ albmimg, isArtist, title }) => {
+const thumnail_card = ({ albmimg, isArtist, title,isSong }) => {
     let imgclass = 'cardlogo';
     const [ishovered, setIsHovered] = useState(false);
 

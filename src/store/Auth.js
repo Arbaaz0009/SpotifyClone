@@ -15,14 +15,7 @@ const authSlice = createSlice({
     },
     loginUser(state, action) {
       const { email, password } = action.payload;
-      const user = state.users.find(
-        (user) => user.email === email && user.password === password
-      );
-      if (user) {
-        state.isAuthenticated = true;
-      } else {
-        state.isAuthenticated = false;
-      }
+      
     },
     logoutUser(state) {
       state.isAuthenticated = false;
