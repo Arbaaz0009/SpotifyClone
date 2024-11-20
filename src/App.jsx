@@ -5,7 +5,8 @@ import {
 import Home from "./Pages/Home";
 import Login from "./Pages/Auth/Login";
 import SignUp from "./Pages/Auth/SignUp";
-
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/signup",  
+    path: "/signup",
     element: <SignUp />,
   }
 
@@ -25,7 +26,11 @@ const router = createBrowserRouter([
 
 ]);
 function App() {
-  return <RouterProvider router={router}/>
+  console.log("app.jsx loaded");
+  
+
+
+  return <RouterProvider router={router} />
 }
 
 export default App

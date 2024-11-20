@@ -6,9 +6,22 @@ import Playlist from '../components/playlist';
 import Card from '../components/thumnailCard'
 import { songs, artistSongs } from '../songsData'
 import PlayBar from '../components/PlayBar';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-
+import { authAction } from '../store/Auth';
 const Home = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    console.log('home page loaded');
+    const hash = window.location.hash;
+    if (hash) {
+      const token = new URLSearchParams(hash).get('#access_token');
+      dispatch(authAction.registerUser(token));
+      navigate('/');
+    }
+  }, []);
   const [setPlaylist, addPlaylist] = useState([
     {
       isArtist: false,
@@ -78,7 +91,7 @@ const Home = () => {
           ))
         }
       </section>
-      <PlayBar/>
+      <PlayBar />
     </section>
     {currentSong && (
       <audio controls autoPlay>

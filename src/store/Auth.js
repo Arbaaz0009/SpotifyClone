@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isAuthenticated: false,
-  token:'',
+  token: 'avaev',
 };
 
 const authSlice = createSlice({
@@ -25,4 +25,4 @@ const authSlice = createSlice({
 });
 
 export const authAction = authSlice.actions;
-export default authSlice;
+export default authSlice.reducer;
