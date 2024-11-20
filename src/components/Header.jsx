@@ -4,13 +4,14 @@ import { faHouse, faMagnifyingGlass, faXmark, } from '@fortawesome/free-solid-sv
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
+import  Profile from './profile';
 
 export default function Header({ ...props }) {
     const navigate = useNavigate();
     const [searchvalue, setsearchvalue] = useState('');
     const [searchactive, setsearchbox] = useState('clearsearch');
-
+    const isauth = useSelector(state => state.auth.isAuthenticated);
 
 
     function toggleclear() {
@@ -60,11 +61,11 @@ export default function Header({ ...props }) {
                 </span>
             </div>
 
-            <span className='signsec'>
+            {(!isauth)?<span className='signsec'>
                 <button className='signupbtn' onClick={ toggleSignUp}>Sign up</button>
                 <button className='signinbtn' onClick={ toggleLogin}>Log in</button>
-            </span>
-
+            </span>:<Profile />}
+            {/* <Profile /> */}
           
 
         </nav>

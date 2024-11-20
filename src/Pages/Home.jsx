@@ -7,21 +7,14 @@ import Card from '../components/thumnailCard'
 import { songs, artistSongs } from '../songsData'
 import PlayBar from '../components/PlayBar';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import apiClient from '../spotify';
 import { authAction } from '../store/Auth';
+import { setClientToken } from '../spotify';
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log('home page loaded');
-    const hash = window.location.hash;
-    if (hash) {
-      const token = new URLSearchParams(hash).get('#access_token');
-      dispatch(authAction.registerUser(token));
-      navigate('/');
-    }
-  }, []);
+  const state_token = useSelector((state) => state.auth.token);
   const [setPlaylist, addPlaylist] = useState([
     {
       isArtist: false,
@@ -31,6 +24,35 @@ const Home = () => {
 
   ]);
   const [currentSong, setCurrentSong] = useState(null);
+
+
+
+  useEffect(() => {
+    console.log('home page loaded');
+    const hash = window.location.hash;
+    if (hash) {
+      const token = new URLSearchParams(hash).get('#access_token');
+      dispatch(authAction.registerUser(token));
+      window.localStorage.setItem('token', token);
+      setClientToken(token);
+      navigate('/');
+    }
+  }, [dispatch, navigate]);
+
+
+  useEffect(() => {
+    if (state_token) {
+      apiClient.get("/me").then((response) => {
+        console.log(response);
+      }).catch((error) => {
+        
+        console.error('Error fetching user data:', error);
+        if (error.response && error.response.status === 401) {
+          navigate('/login');
+        }
+      });
+    }
+  }, [state_token, navigate]);
 
   const handleCardClick = (song) => {
     console.log(song);

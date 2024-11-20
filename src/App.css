@@ -6,6 +6,7 @@
   height: 100vh;
   position: absolute;
   overflow: hidden;
+  transition: all 0.2s ease;
 }
 
 .navbar {

@@ -10,12 +10,7 @@ const PlayBar = () => {
 
   return (
     <div className="playbar">
-      <input
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Search for a song..."
-      />
+      
       {/* Other elements in the PlayBar */}
     </div>
   );

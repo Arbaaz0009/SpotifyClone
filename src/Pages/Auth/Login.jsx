@@ -27,6 +27,9 @@ const Login = () => {
                     <Link to="https://accounts.spotify.com/en/password-reset?flow_ctx=052d33cd-0c1f-49f8-9b0f-3573bac8f62e%3A1732119785" title='Forgot Password?'>Forgot Password?</Link>
                     <Link to='https://www.spotify.com/in-en/signup?forward_url=https%3A%2F%2Fopen.spotify.com%2F'>Sign Up</Link>
                 </div>
+                <div>
+                    <Link to='/'>{'< '}Go back</Link>
+                </div>
             </form>
         </main>
     );
