@@ -1,6 +1,6 @@
 const authEndPoint = "https://accounts.spotify.com/authorize";
 const ClientId = "37679ad627494fbcbe1ac60fda0992c6";
-const redirectUri = "http://localhost:5173";
+const redirectUri = "https://spotify-clone-lovat-nine-48.vercel.app";
 const scopes = [
   "playlist-read-private",
   "user-library-modify",
