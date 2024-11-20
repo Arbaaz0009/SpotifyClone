@@ -1,42 +1,40 @@
-import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpotify } from '@fortawesome/free-brands-svg-icons'
+import { Link, useNavigate } from 'react-router-dom';
+import { loginEndPoint } from '../../spotify';
+
+import React from 'react'
 import './style.css';
-import { Link } from 'react-router-dom';
 const login = () => {
-    const AlertforSignUp = (e) => {
-        alert('Just Sign up with account with your email and new password');
-    };
+
 
 
     const handleLogin = (e) => {
         e.preventDefault();
-        const fd = new FormData(e.target);
-        const data = Object.fromEntries(fd.entries());
-        console.log(data);
+        window.location = loginEndPoint;
     };
     return (
         <main className='loginform'>
             <form className='loginpage' onSubmit={handleLogin}>
                 <div>
-                    <FontAwesomeIcon icon={faSpotify}  className='Logo'/>
+                    <FontAwesomeIcon icon={faSpotify} className='Logo' />
                 </div>
                 <h2>Login in to Spotify</h2>
-                <div>
+                {/* <div>
                     <label htmlFor="emailId">Email:</label>
-                    <input type="email" name="email" id="emailId"  required/>
+                    <input type="email" name="email" id="emailId" required />
                 </div>
                 <div>
                     <label htmlFor="password">Password:</label>
-                    <input type="password" id='password' name='password'required minLength={8}/>
-                </div>
+                    <input type="password" id='password' name='password' required minLength={8} />
+                </div> */}
 
-                <button type="submit"   >Login</button>
-                
+                <button type="submit" onClick={handleLogin} >Login</button>
+
 
                 <div className='links'>
-                    <a href="#" title='Forgot Password?' onClick={AlertforSignUp}>Forgot Password?</a>
-                    <Link to='/signup' title='Create a new account'>Create a new account</Link>
+                    <Link to="https://accounts.spotify.com/en/password-reset?flow_ctx=052d33cd-0c1f-49f8-9b0f-3573bac8f62e%3A1732119785" title='Forgot Password?' >Forgot Password?</Link>
+                    <Link to='https://www.spotify.com/in-en/signup?forward_url=https%3A%2F%2Fopen.spotify.com%2F' title='Create a new account'>Create a new account</Link>
                 </div>
 
 

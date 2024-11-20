@@ -8,7 +8,7 @@ import { songs, artistSongs } from '../songsData'
 import PlayBar from '../components/PlayBar';
 
 
-function Home() {
+const Home = () => {
   const [setPlaylist, addPlaylist] = useState([
     {
       isArtist: false,
@@ -17,6 +17,13 @@ function Home() {
     },
 
   ]);
+  const [currentSong, setCurrentSong] = useState(null);
+
+  const handleCardClick = (song) => {
+    console.log(song);
+    setCurrentSong(song);
+  };
+
   function createPlaylist(title) {
     addPlaylist((prevPlaylist) => {
       const nextPlalist = [
@@ -58,17 +65,27 @@ function Home() {
       </section>
       <section className='mid' ></section>
       <section className='right_container'>
-        {/* {uniqueSongs.map((data, index) => {
-          return <Card isArtist albmimg={data.albumimg} title={data.artist} key={index} />;
-        })} */}
         {
-          songs.map((data, index) => {
-            return <Card isArtist isSong title={data.name} key={index} albmimg={data.image}/>;
-          })
+          songs.map((data, index) => (
+            <Card
+              isArtist
+              isSong
+              title={data.name}
+              key={index}
+              albmimg={data.image}
+              onClick={() => handleCardClick(data)}
+            />
+          ))
         }
       </section>
       <PlayBar/>
     </section>
+    {currentSong && (
+      <audio controls autoPlay>
+        <source src={currentSong.source} type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    )}
   </>);
 }
 

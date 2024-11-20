@@ -43,7 +43,7 @@ export default function Header({ ...props }) {
             <FontAwesomeIcon icon={faSpotify} className='spotifylogo' />
             <div className='midbox'>
 
-                <span className='homebox' title='Home'><FontAwesomeIcon icon={faHouse} className='homebtn' /></span>
+                <Link to='/' className='homebox' title='Home'><FontAwesomeIcon icon={faHouse} className='homebtn' /></Link>
                 <span className='searchbox'>
 
                     <label htmlFor="searchbox" className="searchbtn" title='Search'  >

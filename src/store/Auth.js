@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isAuthenticated: false,
-  users: [], // Array to store user emails and passwords
+  token:'',
 };
 
 const authSlice = createSlice({
@@ -10,18 +10,19 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     registerUser(state, action) {
-      const { email, password } = action.payload;
-      state.users.push({ email, password });
+      state.isAuthenticated = true;
+      state.token = action.payload;
     },
     loginUser(state, action) {
-      const { email, password } = action.payload;
-      
+      state.isAuthenticated = true;
+      state.token = action.payload;
     },
     logoutUser(state) {
       state.isAuthenticated = false;
+      state.token = '';
     },
   },
 });
 
-export const { registerUser, loginUser, logoutUser } = authSlice.actions;
+export const authAction = authSlice.actions;
 export default authSlice;

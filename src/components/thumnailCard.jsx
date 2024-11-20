@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-const thumnail_card = ({ albmimg, isArtist, title,isSong }) => {
+const thumnail_card = ({ albmimg, isArtist, title,isSong,onClick }) => {
     let imgclass = 'cardlogo';
     const [ishovered, setIsHovered] = useState(false);
 
     // return (<img className={imgclass} src={TomOdell} alt="cardlogo" />);
     return (
-        <>
+        <div onClick={onClick}>
             <div className='card'
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
@@ -20,7 +20,7 @@ const thumnail_card = ({ albmimg, isArtist, title,isSong }) => {
             </div>
 
 
-        </>
+        </div>
     )
 }
 
