@@ -16,14 +16,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const state_token = useSelector((state) => state.auth.token);
-  const [setPlaylist, addPlaylist] = useState([
-    {
-      isArtist: false,
-      title: "liked Songs",
-      albumimg: '/svgs/heartimg.png',
-    },
-  ]);
-  const [currentSong, setCurrentSong] = useState(null);
+
 
   useEffect(() => {
     console.log('home page loaded');
@@ -49,7 +42,7 @@ const Home = () => {
 
   useEffect(() => {
     if (state_token) {
-      apiClient.get("/me").then((response) => {
+      apiClient.get("/me/playlists").then((response) => {
         console.log(response);
       }).catch((error) => {
         console.error('Error fetching user data:', error);
@@ -60,24 +53,7 @@ const Home = () => {
     }
   }, [state_token, navigate]);
 
-  const handleCardClick = (song) => {
-    console.log(song);
-    setCurrentSong(song);
-  };
-
-  function createPlaylist(title) {
-    addPlaylist((prevPlaylist) => {
-      const nextPlalist = [
-        ...prevPlaylist,
-        {
-          isArtist: false,
-          title: title,
-          albumimg: undefined,
-        }
-      ];
-      return nextPlalist;
-    });
-  }
+ 
 
   return (
     <>
@@ -86,11 +62,11 @@ const Home = () => {
       </nav>
       <section id='body'>
         <section className='left_container'>
-          <Library className="library_sec" newPlaylist={createPlaylist} />
+          <Library className="library_sec"  />
           <section id='playlistContainer'>
-            {setPlaylist.map(({ isArtist, title, albumimg }) =>
+            {/* {setPlaylist.map(({ isArtist, title, albumimg }) =>
               <Playlist isArtist={isArtist} title={title} albumimg={albumimg} key={title} />
-            )}
+            )} */}
           </section>
         </section>
         <section className='mid'></section>
@@ -102,7 +78,7 @@ const Home = () => {
               title={data.name}
               key={index}
               albmimg={data.image}
-              onClick={() => handleCardClick(data)}
+             
             />
           ))}
         </section>
