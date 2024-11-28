@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import heartimg from '/svgs/heartimg.png'
+import heartimg from "/svgs/heartimg.png";
+import apiClient from "../spotify";
+
+let Playlists ;
+
 const initialState = [
   {
-    id:'',
+    id: "",
     title: "liked Songs",
     albumimg: heartimg,
     songs: [],
@@ -11,24 +15,20 @@ const initialState = [
 
 const playlistSlice = createSlice({
   name: "playlists",
-  initialState,
+  initialState : Playlists,
   reducer: {
-    addPlaylist(){
-        const nextPlalist = [
-            ...initialState,
-            {
-              isArtist: false,
-              title: title,
-              albumimg: undefined,
-            }
-          ];
-          initialState = nextPlalist;
+    addPlaylist() {
+      const nextPlalist = [
+        ...initialState,
+        {
+          isArtist: false,
+          title: title,
+          albumimg: undefined,
+        },
+      ];
+      initialState = nextPlalist;
     },
-    removePlaylist(){
-        
-    }
-
-
+    removePlaylist() {},
   },
 });
 

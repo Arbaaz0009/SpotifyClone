@@ -12,10 +12,12 @@ import Card from '../components/thumnailCard';
 import { songs, artistSongs } from '../songsData';
 import PlayBar from '../components/PlayBar';
 
+
+
+
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const state_token = useSelector((state) => state.auth.token);
 
 
   useEffect(() => {
@@ -40,20 +42,8 @@ const Home = () => {
     }
   }, [dispatch, navigate]);
 
-  useEffect(() => {
-    if (state_token) {
-      apiClient.get("/me/playlists").then((response) => {
-        console.log(response);
-      }).catch((error) => {
-        console.error('Error fetching user data:', error);
-        if (error.response && error.response.status === 401) {
-          navigate('/login');
-        }
-      });
-    }
-  }, [state_token, navigate]);
-
  
+
 
   return (
     <>
@@ -62,12 +52,8 @@ const Home = () => {
       </nav>
       <section id='body'>
         <section className='left_container'>
-          <Library className="library_sec"  />
-          <section id='playlistContainer'>
-            {/* {setPlaylist.map(({ isArtist, title, albumimg }) =>
-              <Playlist isArtist={isArtist} title={title} albumimg={albumimg} key={title} />
-            )} */}
-          </section>
+          <Library className="library_sec" />
+
         </section>
         <section className='mid'></section>
         <section className='right_container'>
@@ -78,7 +64,7 @@ const Home = () => {
               title={data.name}
               key={index}
               albmimg={data.image}
-             
+
             />
           ))}
         </section>

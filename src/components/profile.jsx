@@ -1,18 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
-import './Profile.css'
-import apiClient  from '../spotify'
+import './Profile.css';
+import apiClient  from '../spotify';
+import { useDispatch } from 'react-redux';
+import { authAction } from '../store/Auth';
+
 const Profile = () => {
   const [image, setImage] = useState('');
+  const dispatch = useDispatch();
   useEffect(() => {
     console.log('profile page loaded');
     apiClient.get("me").then((response) => {
       console.log("this is image url: ",response); 
       setImage(response.data.images[0].url);
+      dispatch(authAction.setUserName(response.data.display_name));
     });
-
-
   }, []);
   function toggleOption() {
     console.log('profile option clicked');
