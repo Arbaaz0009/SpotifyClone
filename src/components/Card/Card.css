@@ -1,37 +1,41 @@
 .card {
-  height: 11rem;
-  width: 8rem;
+  height: 11vw; /* Changed from 20rem to 20vw */
+  width: 9vw;  /* Changed from 20rem to 20vw */
+
+  border-radius: 10px;
   position: relative;
   cursor: pointer;
 }
 
-.active {
-  background: #383636;
+.card:hover {
+  background: #3a3a3a9a;
 }
 
 .cardlogo {
-  height: 7rem;
-  width: 7rem;
+  height: 8vw; /* Changed from 7rem to 7vw */
+  width: 8vw;  /* Changed from 7rem to 7vw */
+  border-radius: 10px;
+
 }
+
 
 .title {
   width: 100%;
 }
 
 .title {
-  font-size: 0.8rem;
-
+  font-size: 0.9vw; /* Changed from 0.8rem to 1.6vw */
 }
 
 .playbtn {
   display: flex;
   position: absolute;
-  right: 0px;
-  top: 4rem;
-  height: 2rem;
-  width: 2rem;
+  right: 1vw;
+  top: 5vw; /* Changed from 4rem to 8vw */
+  height: 2vw; /* Changed from 2rem to 4vw */
+  width: 2vw;  /* Changed from 2rem to 4vw */
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(4vw); /* Changed from 20px to 4vw */
   transition: opacity 0.5s, transform 0.5s;
 }
 

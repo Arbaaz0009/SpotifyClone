@@ -1,61 +1,50 @@
+#body {
+  display: flex;
+}
 
-  
-  #body {
-    display: flex;
-  }
-  
-  .left_container {
-    height: 36rem;
-    width: 20rem;
-    background: #1f1f1fc9;
-    margin: 0.5rem;
-    border-radius: 0.5rem;
-    padding: 0.3rem;
-    margin-right: 0rem;
-  }
-  
-  .topcontainer{
-    width: 100%;
-    height: 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* border: 1px red solid ; */
-  }
-  
-  .mid {
-    position: relative;
-    cursor: ew-resize;
-    height: 78vh;
-    width: 0.5rem;
-    margin-top: 0.5rem;
-    transition: background-color 0.3s ease;
-  }
-  
-  .mid:hover {
-    border: 1px solid rgb(255, 255, 255);
-  }
-  
-  
-  .right_container {
-    position: relative;
-    right: 0;
-    height: 78vh;
-    width: 100%;
-    background: linear-gradient(to bottom, rgb(0, 0, 113), black);
-    margin: 0.5rem 0 0.5rem 0;
-    border-radius: 0.5rem;
-    padding: 0.3rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    grid-auto-rows: minmax(150px, auto);
-    gap: 0.5rem;
-    scroll-behavior: smooth;
-    overflow-y: auto;
-    scroll-snap-align: start;
-  }
-  
-  .right_container::-webkit-scrollbar {
-    width: 0;
-  }
-  
+.left_container {
+  height: 100vh;
+  width: 20vw;
+  background: #1f1f1fc9;
+  margin: 0.5vw;
+  border-radius: 0.5vw;
+  padding: 0.3vw;
+  margin-right: 0;
+}
+
+
+
+.mid {
+  position: relative;
+  cursor: ew-resize;
+  height: 78vh;
+  width: 0.2vw;
+  margin-top: 0.5vw;
+  transition: background-color 0.3s ease;
+}
+
+.mid:hover {
+  background: white;
+}
+
+.right_container {
+  position: relative;
+  right: 0;
+  height: 78vh;
+  width: 100%;
+  background: linear-gradient(to bottom, rgb(0, 0, 113), black);
+  margin: 0.5vw 0 0.5vw 0;
+  border-radius: 0.5vw;
+  padding: 0.3vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(138px, 1fr));
+  gap: 0.1vw;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  scroll-snap-align: start;
+}
+
+.right_container::-webkit-scrollbar {
+  width: 0;
+}

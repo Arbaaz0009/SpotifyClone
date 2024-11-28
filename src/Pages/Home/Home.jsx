@@ -64,7 +64,7 @@ const Home = () => {
               title={data.name}
               key={index}
               albmimg={data.image}
-
+              
             />
           ))}
         </section>
