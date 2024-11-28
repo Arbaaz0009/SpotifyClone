@@ -5,7 +5,7 @@ import { faSpotify } from '@fortawesome/free-brands-svg-icons'
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import  Profile from './profile';
+import  Profile from '../profile/profile';
 
 export default function Header({ ...props }) {
     const navigate = useNavigate();

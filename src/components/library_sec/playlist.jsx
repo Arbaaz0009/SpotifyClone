@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import apiClient from '../spotify';
+import apiClient from '../../spotify';
 // import defaultimg from '/svgs/music.png'
 
 const playlist = ({ title, albumimg, isArtist, id }, key) => {

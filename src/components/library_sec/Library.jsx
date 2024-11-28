@@ -3,7 +3,7 @@ import { faPlus, faMagnifyingGlass, faList } from '@fortawesome/free-solid-svg-i
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import apiClient from '../spotify';
+import apiClient from '../../spotify';
 import Playlist from './playlist';
 
 export default function Library({ newPlaylist, ...props }) {

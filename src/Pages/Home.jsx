@@ -5,12 +5,12 @@ import apiClient from '../spotify';
 import { authAction } from '../store/Auth';
 import { setClientToken } from '../spotify';
 import '../App.css';
-import Header from '../components/Header';
-import Library from '../components/Library';
-import Playlist from '../components/playlist';
-import Card from '../components/thumnailCard';
+import Header from '../components/navbar/Header';
+import Library from '../components/library_sec/Library';
+import Playlist from '../components/library_sec/playlist';
+import Card from '../components/Card/thumnailCard';
 import { songs, artistSongs } from '../songsData';
-import PlayBar from '../components/PlayBar';
+import PlayBar from '../components/playbar/PlayBar';
 
 
 
