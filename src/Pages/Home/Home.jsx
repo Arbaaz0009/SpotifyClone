@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import apiClient from '../spotify';
-import { authAction } from '../store/Auth';
-import { setClientToken } from '../spotify';
-import '../App.css';
-import Header from '../components/navbar/Header';
-import Library from '../components/library_sec/Library';
-import Playlist from '../components/library_sec/playlist';
-import Card from '../components/Card/thumnailCard';
-import { songs, artistSongs } from '../songsData';
-import PlayBar from '../components/playbar/PlayBar';
+import apiClient from '../../spotify';
+import { authAction } from '../../store/Auth';
+import { setClientToken } from '../../spotify';
+import './Home.css';
+import Header from '../../components/navbar/Header';
+import Library from '../../components/library_sec/Library';
+import Playlist from '../../components/library_sec/playlist';
+import Card from '../../components/Card/thumnailCard';
+import { songs, artistSongs } from '../../songsData';
+import PlayBar from '../../components/playbar/PlayBar';
 
 
 
