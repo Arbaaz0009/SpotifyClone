@@ -8,7 +8,7 @@ import './Home.css';
 import Header from '../../components/navbar/Header';
 import Library from '../../components/library_sec/Library';
 import Playlist from '../../components/library_sec/playlist';
-import Card from '../../components/Card/thumnailCard';
+import Card from '../../components/Card/Card';
 import { songs, artistSongs } from '../../songsData';
 import PlayBar from '../../components/playbar/PlayBar';
 
@@ -48,11 +48,11 @@ const Home = () => {
   return (
     <>
       <nav>
-        <Header className="navbar" />
+        <Header  />
       </nav>
       <section id='body'>
         <section className='left_container'>
-          <Library className="library_sec" />
+          <Library  />
 
         </section>
         <section className='mid'></section>

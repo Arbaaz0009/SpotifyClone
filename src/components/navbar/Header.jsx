@@ -6,8 +6,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import  Profile from '../profile/profile';
-
-export default function Header({ ...props }) {
+import './header.css';
+export default function Header() {
     const navigate = useNavigate();
     const [searchvalue, setsearchvalue] = useState('');
     const [searchactive, setsearchbox] = useState('clearsearch');
@@ -39,7 +39,7 @@ export default function Header({ ...props }) {
     }
 
     return (<>
-        <nav {...props}>
+        <nav className="navbar">
 
             <FontAwesomeIcon icon={faSpotify} className='spotifylogo' />
             <div className='midbox'>

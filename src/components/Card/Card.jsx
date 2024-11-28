@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import './Card.css';
 const thumnail_card = ({ albmimg, isArtist, title,isSong,onClick }) => {
-    let imgclass = 'cardlogo';
+  
     const [ishovered, setIsHovered] = useState(false);
 
     // return (<img className={imgclass} src={TomOdell} alt="cardlogo" />);
     return (
-        <div onClick={onClick}>
-            <div className='card'
+        <div onClick={onClick} >
+            <div className={`card ${ishovered ? 'active' : ''}`}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >

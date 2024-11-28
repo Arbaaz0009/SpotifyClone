@@ -1,0 +1,41 @@
+.card {
+  height: 11rem;
+  width: 8rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.active {
+  background: #383636;
+}
+
+.cardlogo {
+  height: 7rem;
+  width: 7rem;
+}
+
+.title {
+  width: 100%;
+}
+
+.title {
+  font-size: 0.8rem;
+
+}
+
+.playbtn {
+  display: flex;
+  position: absolute;
+  right: 0px;
+  top: 4rem;
+  height: 2rem;
+  width: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.playbtn.show {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -5,8 +5,9 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../spotify';
 import Playlist from './playlist';
+import './Library.css';
 
-export default function Library({ newPlaylist, ...props }) {
+export default function Library({ newPlaylist }) {
     const [active, setactive] = useState('clearaddplaylist');
     const [title, settitle] = useState('');
     const [Playlists, setPlaylist] = useState([]);
@@ -77,7 +78,7 @@ export default function Library({ newPlaylist, ...props }) {
 
 
     return (<>
-        <section {...props}>
+        <section className="library_sec">
             <div className='topcontainer'>
                 <button className='library_btn' title='Collapse Your Library'>
                     <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 24 24" className="Svg-sc-ytk21e-0 bneLcE"
