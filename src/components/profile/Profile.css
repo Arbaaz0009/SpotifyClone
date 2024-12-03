@@ -19,8 +19,11 @@
     transform: scale(1.05);
 }
 
-.logo {
-
+.Crosslogo {
+    height: 50%;
+    width: 50%;
+    margin: auto;
+    margin-top: 25% ;
     filter: brightness(1.2);
     transform: scale(1.05);
 }

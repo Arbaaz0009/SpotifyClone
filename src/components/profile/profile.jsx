@@ -26,13 +26,20 @@ const Profile = () => {
       {/* {!toggleMenu?<img src={image} alt="" srcset="" />:
       <FontAwesomeIcon icon={faXmark} className='logo'/>} */}
       {/* {toggleMenu?<Profile_content className='drop_down' />:null} */}
-      <motion.div
+      {!toggleMenu?<motion.div
         whileTap={{ scale: 0.95 }}
         onClick={() => setToggleMenu(!toggleMenu)}
         className='profile_image'
       >
         <img src={image} alt="" srcset="" />
-      </motion.div>
+      </motion.div>:
+      <motion.div
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setToggleMenu(!toggleMenu)}
+        className='profile_image'
+      >
+       <FontAwesomeIcon icon={faXmark} className='Crosslogo'/>
+      </motion.div>}
       <AnimatePresence>
         {toggleMenu ? (
           <motion.div

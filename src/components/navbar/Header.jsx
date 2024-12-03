@@ -65,7 +65,7 @@ export default function Header() {
                 <button className='signupbtn' onClick={ toggleSignUp}>Sign up</button>
                 <button className='signinbtn' onClick={ toggleLogin}>Log in</button>
             </span>:<Profile />}
-            {/* <Profile /> */}
+            
           
 
         </nav>

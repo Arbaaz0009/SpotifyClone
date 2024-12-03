@@ -42,17 +42,17 @@ const Home = () => {
     }
   }, [dispatch, navigate]);
 
- 
+
 
 
   return (
     <>
       <nav>
-        <Header  />
+        <Header />
       </nav>
       <section id='body'>
         <section className='left_container'>
-          <Library  />
+          <Library />
 
         </section>
         <section className='mid'></section>
@@ -64,12 +64,12 @@ const Home = () => {
               title={data.name}
               key={index}
               albmimg={data.image}
-              
+
             />
           ))}
         </section>
+        <PlayBar />
       </section>
-      <PlayBar />
     </>
   );
 };
