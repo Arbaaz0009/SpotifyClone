@@ -39,7 +39,7 @@
   padding: 0.3vw;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(138px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(170px, 1fr));
   gap: 0.1vw;
   scroll-behavior: smooth;
   overflow-y: auto;

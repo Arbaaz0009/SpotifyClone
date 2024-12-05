@@ -8,6 +8,8 @@ const playlist = ({ title, albumimg, isArtist, id }, key) => {
   let logo = <span className='logo'><img src={imgLogo} /></span>
   const username = useSelector((state) => state.auth.userName);
 
+  console.count("playlist component Loaded");
+  
   if (title === 'liked Songs') {
     logo = <span className='heartlogo'><img src={imgLogo} /></span>
   }
@@ -15,14 +17,27 @@ const playlist = ({ title, albumimg, isArtist, id }, key) => {
     console.log('Playlist Id: ', id);
   }
   useEffect(() => {
-    apiClient.get('me/tracks')
-      .then((response) => {
-        console.log("this is tracks response:", response);
+    try {
+      apiClient.get('me/tracks')
+        .then((response) => {
+          // console.log("this is tracks", response);
+        })
+    } catch (Error) {
+      console.log(Error);
 
-      })
-
+    } 
   }, []);
 
+  // useEffect(() => {
+  //   apiClient.get(`playlists/72AikfkRhsmwjfl3RBWecs/tracks`)
+  //     .then((response) => {
+  //       console.log("this is playlist", response);
+
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     })
+  // }, []);
   return (
     <li id='playlist' key={key} onClick={showPlaylistId}>
       {logo}

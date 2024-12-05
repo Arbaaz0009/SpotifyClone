@@ -11,6 +11,7 @@
     display: flex;
     /* flex-direction: row; */
     align-items: center;
+    transition: all 0.3s ease-in-out;
 }
 
 .song-info {
@@ -161,3 +162,29 @@
     cursor: pointer;
     border-radius: 50%;
 }
+@media (max-width: 768px) {
+    .SongProgressBar {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .song-info {
+      width: 100%;
+      margin-bottom: 10px;
+      justify-content: center;
+    }
+  
+    .controls-sec {
+      width: 100%;
+    }
+  
+    .progressBarSec {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .volume-changer {
+      right: 10px;
+    }
+  }
+  

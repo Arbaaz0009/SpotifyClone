@@ -9,7 +9,6 @@ import Header from '../../components/navbar/Header';
 import Library from '../../components/library_sec/Library';
 import Playlist from '../../components/library_sec/playlist';
 import Card from '../../components/Card/Card';
-import { songs, artistSongs } from '../../songsData';
 import PlayBar from '../../components/playbar/PlayBar';
 
 
@@ -18,7 +17,7 @@ import PlayBar from '../../components/playbar/PlayBar';
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [songs, setSongs] = useState([]);
 
   useEffect(() => {
     console.log('home page loaded');
@@ -43,7 +42,23 @@ const Home = () => {
   }, [dispatch, navigate]);
 
 
+  useEffect(() => {
+    apiClient.get(`playlists/72AikfkRhsmwjfl3RBWecs/tracks`)
+      .then((response) => {
+        console.log("this is playlist", response.data.items);
+        
+        const playlistRes = response.data.items.map((item) => ({
+          name: item.track.name,
+          image: item.track.album.images[0].url,
+        }));
+        setSongs(playlistRes);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }, []);
 
+console.log(songs);
 
   return (
     <>
@@ -57,13 +72,13 @@ const Home = () => {
         </section>
         <section className='mid'></section>
         <section className='right_container'>
-          {songs.map((data, index) => (
+          {songs?.map(({name,image}, index) => (
             <Card
               isArtist
               isSong
-              title={data.name}
+              title={name}
               key={index}
-              albmimg={data.image}
+              albmimg={image}
 
             />
           ))}
