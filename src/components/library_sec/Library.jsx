@@ -12,7 +12,7 @@ export default function Library({ newPlaylist }) {
     const [title, settitle] = useState('');
     const [Playlists, setPlaylist] = useState([]);
     let addplaylist = document.getElementById('addplaylist');
-    const state_token = useSelector((state) => state.auth.token);
+    const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const navigate = useNavigate();
     function deactivate() {
         setactive('clearaddplaylist');
@@ -77,15 +77,17 @@ export default function Library({ newPlaylist }) {
 
     }, []);
     // console.log(Playlists[0][0].id);
+    function handleLogin(){
+        navigate('/login')
+    }
 
 
 
 
 
-    let playlist = <input className={active} value={title} id='addplaylist' minLength="1" placeholder='Enter a Playlist Name' onBlur={deactivate} onKeyDown={getdata} onChange={changetitle}></input>
 
-
-    return (<>
+    return (
+    <>
         <section className="library_sec">
             <div className='topcontainer'>
                 <button className='library_btn' title='Collapse Your Library'>
@@ -114,14 +116,14 @@ export default function Library({ newPlaylist }) {
         </section>
         <section id='playlistContainer'>
             {
-                Playlists[0]?.map((playlist) => (
+                (isAuth)?Playlists[0]?.map((playlist) => (
                     <Playlist
                         key={playlist.id}
                         id={playlist.id}
                         title={playlist.title}
                         albumimg={playlist.albumimg}
                         isArtist={false} />
-                ))
+                )):<div className='defaultPlaylist' onClick={handleLogin}> <h1>please Login First</h1> </div>
             }
 
         </section>

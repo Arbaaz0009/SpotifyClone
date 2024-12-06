@@ -32,6 +32,7 @@
 .library_btn span {
   margin-left: 0.3vh;
 }
+
 .topcontainer {
   width: 100%;
   height: 3vh;
@@ -97,11 +98,13 @@
   cursor: pointer;
   transform: scale(1.2);
 }
+
 .list_search svg {
   height: 3vh;
   width: 3vh;
- 
+
 }
+
 .list_search:hover {
   background: #484848;
   border-radius: 50%;
@@ -146,7 +149,7 @@
 #playlist {
   border-radius: 0.2vw;
   height: 8vh;
-  
+
   display: flex;
   padding: 0.4vw;
   cursor: pointer;
@@ -222,4 +225,15 @@
 
 .clearaddplaylist {
   visibility: hidden;
+}
+
+.defaultPlaylist {
+  border-radius: 0.2vw;
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom left,rgb(0, 0, 108),rgb(21, 11, 69),black);
+  padding: 0.4vw;
+  cursor: pointer;
 }

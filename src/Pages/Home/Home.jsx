@@ -18,6 +18,9 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [songs, setSongs] = useState([]);
+  const token = useSelector((state)=>state.auth.token);
+  console.log("this is token:",token);
+  
 
   useEffect(() => {
     console.log('home page loaded');
@@ -55,6 +58,7 @@ const Home = () => {
       })
       .catch((error) => {
         console.log(error);
+        dispatch(authAction.logoutUser());
       })
   }, []);
 
