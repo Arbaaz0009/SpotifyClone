@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../spotify';
 import { authAction } from '../../store/Auth';
-import { setClientToken } from '../../spotify';
+import { setClientToken , loginEndPoint} from '../../spotify';
 import './Home.css';
 import Header from '../../components/navbar/Header';
 import Library from '../../components/library_sec/Library';
@@ -86,9 +86,12 @@ console.log(songs);
 
             />
           ))}
+          <br />
+          <h1>{loginEndPoint}</h1>
         </section>
         <PlayBar />
       </section>
+    
     </>
   );
 };

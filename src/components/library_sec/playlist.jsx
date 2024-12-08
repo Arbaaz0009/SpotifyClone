@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import apiClient from '../../spotify';
+import apiClient,{} from '../../spotify';
 // import defaultimg from '/svgs/music.png'
 
 const playlist = ({ title, albumimg, isArtist, id }, key) => {
@@ -28,16 +28,18 @@ const playlist = ({ title, albumimg, isArtist, id }, key) => {
     } 
   }, []);
 
-  // useEffect(() => {
-  //   apiClient.get(`playlists/72AikfkRhsmwjfl3RBWecs/tracks`)
-  //     .then((response) => {
-  //       console.log("this is playlist", response);
 
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     })
-  // }, []);
+  
+  useEffect(() => {
+    apiClient.get(`/me/player/devices`)
+      .then((response) => {
+        console.log("this is player", response);
+
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }, []);
   return (
     <li id='playlist' key={key} onClick={showPlaylistId}>
       {logo}
@@ -45,6 +47,7 @@ const playlist = ({ title, albumimg, isArtist, id }, key) => {
         {(title) ? <p>{title}</p> : <p>Playlist</p>}
         {(isArtist) ? <p>Artist</p> : <p>Playlist &#x22C5; {username}</p>}
       </span>
+    
     </li>
   )
 }
