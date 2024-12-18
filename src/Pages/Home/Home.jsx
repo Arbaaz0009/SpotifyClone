@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import apiClient from '../../spotify';
 import { authAction } from '../../store/Auth';
 import { setClientToken, loginEndPoint } from '../../spotify';
@@ -53,7 +53,7 @@ const Home = () => {
           name: item.track.name,
           image: item.track.album.images[0].url,
           artist: item.track.artists[0].name,
-          id:item.track.id,
+          id: item.track.id,
         }));
         setSongs(playlistRes);
       })
@@ -64,9 +64,12 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    apiClient.get('/recommendations')
+    // apiClient.get('/me/top/tracks')
+    // apiClient.get('/me/following?type=artist')
+    apiClient.get('/me/tracks')
+
       .then((response) => {
-        console.log(response);
+        // console.log(response);
 
       })
       .catch((error) => {
@@ -89,7 +92,7 @@ const Home = () => {
         </section>
         <section className='mid'></section>
         <section className='right_container'>
-          {isAuth && songs?.map(({ name, image, artist }, index) => (
+          {/* {isAuth && songs?.map(({ name, image, artist }, index) => (
             <Card
               artist={artist}
               isSong
@@ -98,8 +101,19 @@ const Home = () => {
               albmimg={image}
 
             />
-          ))}
+          ))} */}
 
+          <Outlet />
+          {!location.pathname.includes("playlist") && (
+            <>
+              <div className="artist-sec">
+                <h1>Artist Section</h1>
+              </div>
+              <div className="playlist-sec">
+                <h1>Playlist Section</h1>
+              </div>
+            </>
+          )}
         </section>
         <PlayBar />
       </section>

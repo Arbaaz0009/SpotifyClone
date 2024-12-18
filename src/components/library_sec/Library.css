@@ -180,8 +180,8 @@
 }
 
 .heartlogo {
-  height: 3vh;
-  width: 8vw;
+  height: 7vh;
+  width: 12vw;
   border-radius: 0.2vw;
   display: flex;
   justify-content: center;
@@ -190,8 +190,8 @@
 }
 
 .heartlogo img {
-  width: 1vh;
-  height: 1vh;
+  width: 2.5vh;
+  height: 2.5vh;
   filter: invert(1);
 }
 

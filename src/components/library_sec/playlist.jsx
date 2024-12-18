@@ -10,8 +10,8 @@ const playlist = ({ title, albumimg, isArtist, id }, key) => {
 
   // console.count("playlist component Loaded");
   
-  if (title === 'liked Songs') {
-    logo = <span className='heartlogo'><img src={imgLogo} /></span>
+  if (title === 'Liked Songs') {
+    logo = <span className='heartlogo'><img src='/svgs/heartimg.png' /></span>
   }
   function showPlaylistId() {
     console.log('Playlist Id: ', id);

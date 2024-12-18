@@ -8,12 +8,19 @@ import SignUp from "./Pages/Auth/SignUp";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import Playlist from "./components/playlist/playlist";
 import './App.css';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+    children: [
+      {
+        path: "playlist/:playlist_id",
+        element: <Playlist />
+      },
+    ]
+
   },
   {
     path: "/login",
@@ -29,7 +36,7 @@ const router = createBrowserRouter([
 ]);
 function App() {
   console.log("app.jsx loaded");
-  
+
 
   return <RouterProvider router={router} />
 }

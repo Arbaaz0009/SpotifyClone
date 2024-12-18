@@ -28,7 +28,7 @@
   background: white;
 }
 
-.right_container {
+/* .right_container {
   position: relative;
   right: 0;
   height: 78vh;
@@ -44,8 +44,31 @@
   scroll-behavior: smooth;
   overflow-y: auto;
   scroll-snap-align: start;
+} */
+
+.right_container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  right: 0;
+  height: 78vh;
+  width: 100%;
+  background: linear-gradient(to bottom, rgb(0, 0, 113), black);
+  margin: 0.5vw 0 0.5vw 0;
+  border-radius: 0.5vw;
+  padding: 0.3vw;
 }
 
 .right_container::-webkit-scrollbar {
   width: 0;
+}
+
+.playlist-sec,
+.artist-sec {
+  height: 35vh;
+  width: 100%;
+  border: 1px solid white;
+  margin: 0.3vw;
+  border-radius: 1vh;
+  padding: 0.1vw;
 }
