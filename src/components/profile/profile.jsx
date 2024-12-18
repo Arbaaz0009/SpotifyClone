@@ -14,7 +14,7 @@ const Profile = () => {
   useEffect(() => {
     console.log('profile page loaded');
     apiClient.get("me").then((response) => {
-      console.log("this is image url: ", response);
+      
       setImage(response.data.images[0].url);
       dispatch(authAction.setUserName(response.data.display_name));
     });

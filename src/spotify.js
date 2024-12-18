@@ -8,10 +8,12 @@ const scopes = [
   "user-library-read",
   "user-read-email",
   "user-read-playback-state",
+  "user-read-recently-played",
+  "user-top-read",
 ];
 
 export const loginEndPoint = `${authEndPoint}?client_id=${ClientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
-    "%20"
+  "%20"
 )}&response_type=token&show_dialog=true`;
 
 const apiClient = axios.create({
@@ -19,7 +21,7 @@ const apiClient = axios.create({
 });
 
 export const setClientToken = (token) => {
-  apiClient.interceptors.request.use(async function (config){
+  apiClient.interceptors.request.use(async function (config) {
     config.headers.Authorization = `Bearer ${token}`;
     return config;
   });

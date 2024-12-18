@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
 import './Card.css';
-import { useSelector } from 'react-redux';
-const thumnail_card = ({ albmimg, isArtist, title, isSong }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { setSongAction } from '../../store/setSong';
 
+
+const thumnail_card = ({ albmimg, artist, title, isSong }) => {
+    const dispatch = useDispatch();
     const [ishovered, setIsHovered] = useState(false);
     const username = useSelector(state => state.auth.userName);
+
+    function updateSong(){
+        dispatch(setSongAction.updateSong({img:albmimg,title:title,artist:artist}))
+    }
     // return (<img className={imgclass} src={TomOdell} alt="cardlogo" />);
     return (
 
         <div className={`card`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            onClick={updateSong}
         >
             <img src={albmimg} draggable={false} className='cardlogo' alt="cardlogo" />
 

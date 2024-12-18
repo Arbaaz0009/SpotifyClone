@@ -50,7 +50,7 @@ export default function Library({ newPlaylist }) {
                 try {
                     apiClient.get("/me/playlists")
                         .then((response) => {
-                            console.log("this is playlist response:", response);
+                            // console.log("this is playlist response:", response);
                             const Playlist_res = response.data.items.map((playlist) => ({
                                 id: playlist.id,
                                 title: playlist.name,

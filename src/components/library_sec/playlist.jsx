@@ -8,7 +8,7 @@ const playlist = ({ title, albumimg, isArtist, id }, key) => {
   let logo = <span className='logo'><img src={imgLogo} /></span>
   const username = useSelector((state) => state.auth.userName);
 
-  console.count("playlist component Loaded");
+  // console.count("playlist component Loaded");
   
   if (title === 'liked Songs') {
     logo = <span className='heartlogo'><img src={imgLogo} /></span>
@@ -30,16 +30,16 @@ const playlist = ({ title, albumimg, isArtist, id }, key) => {
 
 
   
-  useEffect(() => {
-    apiClient.get(`/me/player/devices`)
-      .then((response) => {
-        console.log("this is player", response);
+  // useEffect(() => {
+  //   apiClient.get(`/me/player/devices`)
+  //     .then((response) => {
+  //       console.log("this is player", response);
 
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }, []);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     })
+  // }, []);
   return (
     <li id='playlist' key={key} onClick={showPlaylistId}>
       {logo}

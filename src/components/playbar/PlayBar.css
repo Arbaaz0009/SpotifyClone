@@ -187,4 +187,18 @@
       right: 10px;
     }
   }
-  
+  .album-artSpan{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right,rgb(3, 3, 105),rgb(14, 14, 201),rgb(1, 8, 70));
+  }
+  .album-artSpan svg{
+    height: 5vh;
+    width: 5vh;
+  }

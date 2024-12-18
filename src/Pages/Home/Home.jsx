@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../spotify';
 import { authAction } from '../../store/Auth';
-import { setClientToken , loginEndPoint} from '../../spotify';
+import { setClientToken, loginEndPoint } from '../../spotify';
 import './Home.css';
 import Header from '../../components/navbar/Header';
 import Library from '../../components/library_sec/Library';
 import Playlist from '../../components/library_sec/playlist';
 import Card from '../../components/Card/Card';
 import PlayBar from '../../components/playbar/PlayBar';
-
+import { setSongAction } from '../../store/setSong';
 
 
 
@@ -18,9 +18,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [songs, setSongs] = useState([]);
-  const token = useSelector((state)=>state.auth.token);
-  console.log("this is token:",token);
-  
+  const token = useSelector((state) => state.auth.token);
+  const isAuth = useSelector(state => state.auth.isAuthenticated)
 
   useEffect(() => {
     console.log('home page loaded');
@@ -48,11 +47,13 @@ const Home = () => {
   useEffect(() => {
     apiClient.get(`playlists/72AikfkRhsmwjfl3RBWecs/tracks`)
       .then((response) => {
-        console.log("this is playlist", response.data.items);
-        
+        // console.log("this is playlist", response.data.items);
+
         const playlistRes = response.data.items.map((item) => ({
           name: item.track.name,
           image: item.track.album.images[0].url,
+          artist: item.track.artists[0].name,
+          id:item.track.id,
         }));
         setSongs(playlistRes);
       })
@@ -62,7 +63,19 @@ const Home = () => {
       })
   }, []);
 
-console.log(songs);
+  useEffect(() => {
+    apiClient.get('/recommendations')
+      .then((response) => {
+        console.log(response);
+
+      })
+      .catch((error) => {
+        console.log(error);
+
+      })
+  }, []);
+
+  // console.log(songs);
 
   return (
     <>
@@ -76,9 +89,9 @@ console.log(songs);
         </section>
         <section className='mid'></section>
         <section className='right_container'>
-          {songs?.map(({name,image}, index) => (
+          {isAuth && songs?.map(({ name, image, artist }, index) => (
             <Card
-              isArtist
+              artist={artist}
               isSong
               title={name}
               key={index}
@@ -86,12 +99,11 @@ console.log(songs);
 
             />
           ))}
-          <br />
-          <h1>{loginEndPoint}</h1>
+
         </section>
         <PlayBar />
       </section>
-    
+
     </>
   );
 };
