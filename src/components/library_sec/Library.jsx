@@ -28,55 +28,37 @@ export default function Library({ newPlaylist }) {
         }
         );
     }
-    function getdata(e) {
-        if (e.code === 'Enter') {
-            if (title) {
-                settitle(e.value);
-                newPlaylist(title);
-                deactivate();
-            } else {
-                addplaylist.setCustomValidity("Name cannot be empty!");
-                addplaylist.reportValidity();
-            }
-        }
-    }
-
+  
 
     useEffect(() => {
-        console.log('library page loaded');
-
+        console.log("Library page loaded");
+      
         const fetchData = async () => {
-
-            try {
-                apiClient.get("/me/playlists")
-                    .then((response) => {
-                        // console.log("this is playlist response:", response);
-                        const Playlist_res = response.data.items.map((playlist) => ({
-                            id: playlist.id,
-                            title: playlist.name,
-                            albumimg: playlist.images[0].url,
-                            songs: [],
-                        }));
-                        setPlaylist((prevPlaylist) => {
-                            return [...prevPlaylist, Playlist_res];
-                        });
-                    })
+          try {
+            const response = await apiClient.get("/me/playlists");
+            console.log("Playlist response:", response);
+      
+            const Playlist_res = response.data.items.map((playlist) => ({
+              id: playlist.id,
+              title: playlist.name,
+              albumimg: playlist.images[0]?.url || "No Image Available",
+              songs: [], // Placeholder for songs if required later
+            }));
+      
+            // Set state with flattened playlists
+            setPlaylist((prevPlaylist) => [...prevPlaylist, ...Playlist_res]);
+          } catch (error) {
+            console.error("Error fetching user playlists:", error);
+      
+            if (error.response && error.response.status === 401) {
+              navigate("/login");
             }
-            catch (error) {
-                console.error("Error fetching user data:", error);
-                if (error.response && error.response.status === 401) {
-                    navigate("/login");
-                }
-            }
-
-        }
-
+          }
+        };
+      
         fetchData();
-
-
-
-
-    }, []);
+      }, []); // Dependency array to run only on component mount
+      
     // console.log(Playlists[0][0].id);
     function handleLogin() {
         navigate('/login')
