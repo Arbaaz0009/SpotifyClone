@@ -41,6 +41,7 @@
   margin: 0.5vw 0 0.5vw 0;
   border-radius: 0.5vw;
   padding: 0.3vw;
+  overflow-y: auto;
 }
 
 .right_container::-webkit-scrollbar {
@@ -49,7 +50,7 @@
 
 .playlist-sec,
 .artist-sec {
-  height: 35vh;
+  height: 30vh;
   width: 100%;
 
   margin: 0.5vw;

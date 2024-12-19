@@ -39,11 +39,24 @@ const playlist = () => {
           console.log(error);
 
         })
-    } else if (isartist) {
+    }else if(title === 'Top 50 Global' || title === 'Top 50 Hindi Songs 2024' || title === '2024 Trending Songs'){
+      apiClient.get(`/playlists/${id}/tracks`)
+        .then((response) => {
+        // console.log("this is global50:",response);
+        const playlistRes = response.data.items.map((item) => ({
+          name: item.track.name,
+          image: item.track.album.images[0].url,
+          artist: item.track.artists[0].name,
+          id: item.track.id,
+        }));
+        setSongs(playlistRes);
+      })
+    }
+     else if (isartist && title != 'Top 50 Global') {
       // apiClient.get(`/artists/7vk5e3vY1uw9plTHJAMwjN/top-tracks`)
       apiClient.get(`/artists/${id}/top-tracks?market=US`)
         .then((response) => {
-          console.log("this is playlist", response);
+          // console.log("this is playlist", response);
 
           const playlistRes = response.data.tracks.map((item) => ({
             name: item.name,
