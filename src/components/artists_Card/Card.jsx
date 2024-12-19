@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Card.css';
+import './card.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {setSongAction} from '../../store/setSong';
