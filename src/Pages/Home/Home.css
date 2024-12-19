@@ -28,23 +28,7 @@
   background: white;
 }
 
-/* .right_container {
-  position: relative;
-  right: 0;
-  height: 78vh;
-  width: 100%;
-  background: linear-gradient(to bottom, rgb(0, 0, 113), black);
-  margin: 0.5vw 0 0.5vw 0;
-  border-radius: 0.5vw;
-  padding: 0.3vw;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(170px, 1fr));
-  gap: 0.1vw;
-  scroll-behavior: smooth;
-  overflow-y: auto;
-  scroll-snap-align: start;
-} */
+
 
 .right_container {
   display: flex;
@@ -53,7 +37,7 @@
   right: 0;
   height: 78vh;
   width: 100%;
-  background: linear-gradient(to bottom, rgb(0, 0, 113), black);
+  background: linear-gradient(to bottom, rgb(0, 0, 78), black);
   margin: 0.5vw 0 0.5vw 0;
   border-radius: 0.5vw;
   padding: 0.3vw;
@@ -67,8 +51,39 @@
 .artist-sec {
   height: 35vh;
   width: 100%;
-  border: 1px solid white;
+
+  margin: 0.5vw;
+  border-radius: 1vh;
+  padding: 0.1vw;
+  display: flex;
+  flex-direction: column;
+ 
+}
+.artist-sec,.playlist-sec>h1{
+  text-align: left;
+  padding-left: 1vw;
+}
+.items{
+  height: 25vh;
+  width: 75vw;
   margin: 0.3vw;
   border-radius: 1vh;
   padding: 0.1vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 0.1vw;
+  /* scroll-behavior: smooth;
+  overflow-x: auto;
+  scroll-snap-align: start;
+  scroll-snap-type: x mandatory; */
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  grid-auto-flow: column;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  scroll-behavior: auto;
+}
+.items::-webkit-scrollbar{
+  width: 0;
 }

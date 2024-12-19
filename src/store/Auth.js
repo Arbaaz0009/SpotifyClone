@@ -4,12 +4,14 @@ const initialState = Token
   ? {
       isAuthenticated: true,
       token: Token,
-      userName:'',
+      userName: "",
+      img: "",
     }
   : {
       isAuthenticated: false,
       token: "",
-      userName:'',
+      userName: "",
+      img: "",
     };
 
 const authSlice = createSlice({
@@ -29,7 +31,8 @@ const authSlice = createSlice({
       state.token = "";
     },
     setUserName(state, action) {
-      state.userName = action.payload;
+      state.userName = action.payload.userName;
+      state.img = action.payload.img;
     },
   },
 });

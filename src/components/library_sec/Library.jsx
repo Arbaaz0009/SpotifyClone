@@ -69,19 +69,6 @@ export default function Library({ newPlaylist }) {
                 }
             }
 
-            try {
-                apiClient.get("/me/tracks")
-                    .then((response) => {
-                      console.log(response);
-                      
-                    })
-            }
-            catch (error) {
-                console.error("Error fetching user data:", error);
-                if (error.response && error.response.status === 401) {
-                    navigate("/login");
-                }
-            }
         }
 
         fetchData();
@@ -130,7 +117,7 @@ export default function Library({ newPlaylist }) {
             </section>
             <section id='playlistContainer'>
                 {
-                    (isAuth)?<Playlist title="Liked Songs" />:''
+                    (isAuth)?<Playlist title="Liked Songs" id="LikedSongs"/>:''
                 }
                 {
                     (isAuth) ? Playlists[0]?.map((playlist) => (

@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import apiClient,{} from '../../spotify';
+import { useNavigate } from 'react-router-dom';
 // import defaultimg from '/svgs/music.png'
 
 const playlist = ({ title, albumimg, isArtist, id }, key) => {
   let imgLogo = (albumimg === undefined) ? '/svgs/music.png' : albumimg;
   let logo = <span className='logo'><img src={imgLogo} /></span>
   const username = useSelector((state) => state.auth.userName);
+  const navigate = useNavigate();
 
   // console.count("playlist component Loaded");
   
@@ -15,6 +17,14 @@ const playlist = ({ title, albumimg, isArtist, id }, key) => {
   }
   function showPlaylistId() {
     console.log('Playlist Id: ', id);
+    navigate(`/playlist`,{
+      state:{
+        id:id,  
+        title:title,
+        albumimg:albumimg,
+        
+      },
+    })
   }
   useEffect(() => {
     try {

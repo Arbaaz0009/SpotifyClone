@@ -10,7 +10,12 @@ const thumnail_card = ({ albmimg, artist, title, id ,isartist}) => {
     const [ishovered, setIsHovered] = useState(false);
     const username = useSelector(state => state.auth.userName);
     const navigate = useNavigate();
-   
+    function LocateToPlaylist(){
+        if(isartist){
+            navigate('/playlist', { state: { id: id, title: title, albumimg: albmimg ,isartist:true} });
+        }
+        
+    }
     function updateSong() {
         console.log("clicked");
         
@@ -22,7 +27,7 @@ const thumnail_card = ({ albmimg, artist, title, id ,isartist}) => {
         <div className={`card`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            onClick={updateSong}
+            onClick={(isartist)?LocateToPlaylist:updateSong}
         >
             <img src={albmimg} draggable={false} className='cardlogo' alt="cardlogo" />
 

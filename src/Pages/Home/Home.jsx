@@ -8,7 +8,7 @@ import './Home.css';
 import Header from '../../components/navbar/Header';
 import Library from '../../components/library_sec/Library';
 import Playlist from '../../components/library_sec/playlist';
-import Card from '../../components/Card/Card';
+import Card from '../../components/artists_Card/Card';
 import PlayBar from '../../components/playbar/PlayBar';
 import { setSongAction } from '../../store/setSong';
 
@@ -17,9 +17,11 @@ import { setSongAction } from '../../store/setSong';
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [songs, setSongs] = useState([]);
   const token = useSelector((state) => state.auth.token);
-  const isAuth = useSelector(state => state.auth.isAuthenticated)
+  let isplaylist = !location.pathname.includes("playlist");
+  const isAuth = useSelector(state => state.auth.isAuthenticated);
+  const [artist, setArtist] = useState([]);
+  const userName = useSelector((state) => state.auth.userName);
 
   useEffect(() => {
     console.log('home page loaded');
@@ -44,29 +46,33 @@ const Home = () => {
   }, [dispatch, navigate]);
 
 
-  useEffect(() => {
-    apiClient.get(`playlists/72AikfkRhsmwjfl3RBWecs/tracks`)
-      .then((response) => {
-        // console.log("this is playlist", response.data.items);
 
-        const playlistRes = response.data.items.map((item) => ({
-          name: item.track.name,
-          image: item.track.album.images[0].url,
-          artist: item.track.artists[0].name,
-          id: item.track.id,
-        }));
-        setSongs(playlistRes);
+  useEffect(() => {
+    // apiClient.get('/me/top/tracks')
+    apiClient.get('/me/following?type=artist')
+      // apiClient.get('/me/tracks')
+
+      .then((response) => {
+        // console.log(response);
+        const Artist = response.data.artists.items.map((item) => ({
+          id: item.id,
+          name: item.name,
+          image: item.images[0].url
+        }))
+        setArtist(Artist);
+        // console.log("this is artists", Artist);
+
       })
       .catch((error) => {
         console.log(error);
-        dispatch(authAction.logoutUser());
+
       })
   }, []);
 
   useEffect(() => {
     // apiClient.get('/me/top/tracks')
     // apiClient.get('/me/following?type=artist')
-    apiClient.get('/me/tracks')
+      apiClient.get('/artists/6eUKZXaKkcviH0Ku9w2n3V/top-tracks?market=US')
 
       .then((response) => {
         // console.log(response);
@@ -78,7 +84,7 @@ const Home = () => {
       })
   }, []);
 
-  // console.log(songs);
+  console.log(artist);
 
   return (
     <>
@@ -92,25 +98,35 @@ const Home = () => {
         </section>
         <section className='mid'></section>
         <section className='right_container'>
-          {/* {isAuth && songs?.map(({ name, image, artist }, index) => (
-            <Card
-              artist={artist}
-              isSong
-              title={name}
-              key={index}
-              albmimg={image}
 
-            />
-          ))} */}
 
           <Outlet />
-          {!location.pathname.includes("playlist") && (
+          {isplaylist && (
             <>
               <div className="artist-sec">
-                <h1>Artist Section</h1>
+                <h1>Your Favorite Artists </h1>
+                <div className='items'>
+
+                  {artist.map((artist) => (
+                    <Card
+                      key={artist.id}
+                      title={artist.name}
+                      albmimg={artist.image}
+                      id={artist.id}
+                      isartist={true}
+                    />
+                  ))
+                }
+                
+                </div>
               </div>
               <div className="playlist-sec">
-                <h1>Playlist Section</h1>
+                <h1>Made For {userName}</h1>
+                <Card
+                title="US Top 50"
+                albmimg={artist.image}
+                id={artist.id}
+                isartist={true}/>
               </div>
             </>
           )}
