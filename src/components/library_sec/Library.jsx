@@ -117,18 +117,29 @@ export default function Library({ newPlaylist }) {
             </section>
             <section id='playlistContainer'>
                 {
-                    (isAuth)?<Playlist title="Liked Songs" id="LikedSongs"/>:''
+                    (isAuth) ? <Playlist title="Liked Songs" id="LikedSongs" /> : ''
                 }
-                {
-                    (isAuth) ? Playlists[0]?.map((playlist) => (
-                        <Playlist
-                            key={playlist.id}
-                            id={playlist.id}
-                            title={playlist.title}
-                            albumimg={playlist.albumimg}
-                            isArtist={false} />
-                    )) : <div className='defaultPlaylist' onClick={handleLogin}> <h1>please Login First</h1> </div>
-                }
+                {isAuth ? (
+                    Playlists[0]?.length > 0 ? (
+                        Playlists[0].map((playlist) => (
+                            <Playlist
+                                key={playlist.id}
+                                id={playlist.id}
+                                title={playlist.title}
+                                albumimg={playlist.albumimg}
+                                isArtist={false}
+                            />
+                        ))
+                    ) : (
+                        <div className="defaultPlaylist">
+                            <h1>No playlists available</h1>
+                        </div>
+                    )
+                ) : (
+                    <div className="defaultPlaylist" onClick={handleLogin}>
+                        <h1>Please Login First</h1>
+                    </div>
+                )}
 
             </section>
         </>);
