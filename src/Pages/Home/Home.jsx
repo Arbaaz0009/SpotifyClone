@@ -119,12 +119,16 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    let isMounted = true;
+  
     async function fetchArtistTopAlbums() {
+      if (!artist || artist.length === 0) return;
+  
       try {
         const albumPromises = artist.map(async (artist) => {
           const response = await apiClient.get(`/artists/${artist.id}/albums`);
           const firstAlbum = response.data.items[0];
-
+  
           if (firstAlbum) {
             return {
               id: firstAlbum.id,
@@ -133,21 +137,26 @@ const Home = () => {
               artist: artist.name,
             };
           }
-          return null; // Handle cases where no albums are available
+          return null;
         });
-
-        // Resolve all promises
+  
         const albums = (await Promise.all(albumPromises)).filter(Boolean);
-
-        // Update state
-        setArtistTopAlbum((prevAlbums) => [...prevAlbums, ...albums]);
+  
+        if (isMounted) {
+          setArtistTopAlbum((prevAlbums) => [...prevAlbums, ...albums]);
+        }
       } catch (error) {
         console.error('Error fetching artist albums:', error);
       }
     }
-
+  
     fetchArtistTopAlbums();
-  },[artist])
+  
+    return () => {
+      isMounted = false; // Cleanup on unmount
+    };
+  }, [artist]);
+  
 
 
   // console.log(artistTopAlbum);
