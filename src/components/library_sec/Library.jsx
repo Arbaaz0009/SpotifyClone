@@ -28,37 +28,55 @@ export default function Library({ newPlaylist }) {
         }
         );
     }
-  
+    function getdata(e) {
+        if (e.code === 'Enter') {
+            if (title) {
+                settitle(e.value);
+                newPlaylist(title);
+                deactivate();
+            } else {
+                addplaylist.setCustomValidity("Name cannot be empty!");
+                addplaylist.reportValidity();
+            }
+        }
+    }
+
 
     useEffect(() => {
-        console.log("Library page loaded");
-      
+        console.log('library page loaded');
+
         const fetchData = async () => {
-          try {
-            const response = await apiClient.get("/me/playlists");
-            console.log("Playlist response:", response);
-      
-            const Playlist_res = response.data.items.map((playlist) => ({
-              id: playlist.id,
-              title: playlist.name,
-              albumimg: playlist.images[0]?.url || "No Image Available",
-              songs: [], // Placeholder for songs if required later
-            }));
-      
-            // Set state with flattened playlists
-            setPlaylist((prevPlaylist) => [...prevPlaylist, ...Playlist_res]);
-          } catch (error) {
-            console.error("Error fetching user playlists:", error);
-      
-            if (error.response && error.response.status === 401) {
-              navigate("/login");
+
+            try {
+                apiClient.get("/me/playlists")
+                    .then((response) => {
+                        // console.log("this is playlist response:", response);
+                        const Playlist_res = response.data.items.map((playlist) => ({
+                            id: playlist.id,
+                            title: playlist.name,
+                            albumimg: playlist.images[0].url,
+                            songs: [],
+                        }));
+                        setPlaylist((prevPlaylist) => {
+                            return [...prevPlaylist, Playlist_res];
+                        });
+                    })
             }
-          }
-        };
-      
+            catch (error) {
+                console.error("Error fetching user data:", error);
+                if (error.response && error.response.status === 401) {
+                    navigate("/login");
+                }
+            }
+
+        }
+
         fetchData();
-      }, []); // Dependency array to run only on component mount
-      
+
+
+
+
+    }, []);
     // console.log(Playlists[0][0].id);
     function handleLogin() {
         navigate('/login')
@@ -99,29 +117,18 @@ export default function Library({ newPlaylist }) {
             </section>
             <section id='playlistContainer'>
                 {
-                    (isAuth) ? <Playlist title="Liked Songs" id="LikedSongs" /> : ''
+                    (isAuth)?<Playlist title="Liked Songs" id="LikedSongs"/>:''
                 }
-                {isAuth ? (
-                    Playlists[0]?.length > 0 ? (
-                        Playlists[0].map((playlist) => (
-                            <Playlist
-                                key={playlist.id}
-                                id={playlist.id}
-                                title={playlist.title}
-                                albumimg={playlist.albumimg}
-                                isArtist={false}
-                            />
-                        ))
-                    ) : (
-                        <div className="defaultPlaylist">
-                            <h1>No playlists available</h1>
-                        </div>
-                    )
-                ) : (
-                    <div className="defaultPlaylist" onClick={handleLogin}>
-                        <h1>Please Login First</h1>
-                    </div>
-                )}
+                {
+                    (isAuth) ? Playlists[0]?.map((playlist) => (
+                        <Playlist
+                            key={playlist.id}
+                            id={playlist.id}
+                            title={playlist.title}
+                            albumimg={playlist.albumimg}
+                            isArtist={false} />
+                    )) : <div className='defaultPlaylist' onClick={handleLogin}> <h1>please Login First</h1> </div>
+                }
 
             </section>
         </>);
