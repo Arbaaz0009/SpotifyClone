@@ -40,16 +40,7 @@ const playlist = ({ title, albumimg, isArtist, id }, key) => {
 
 
   
-  // useEffect(() => {
-  //   apiClient.get(`/me/player/devices`)
-  //     .then((response) => {
-  //       console.log("this is player", response);
-
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     })
-  // }, []);
+ 
   return (
     <li id='playlist' key={key} onClick={showPlaylistId}>
       {logo}

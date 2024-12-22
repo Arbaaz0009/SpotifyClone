@@ -5,14 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import {setSongAction} from '../../store/setSong';
 
 
-const thumnail_card = ({ albmimg, artist, title, id ,isartist}) => {
+const thumnail_card = ({ albmimg, artist, title, id ,isartist,isalbum}) => {
     const dispatch = useDispatch();
     const [ishovered, setIsHovered] = useState(false);
     const username = useSelector(state => state.auth.userName);
     const navigate = useNavigate();
+    
     function LocateToPlaylist(){
         if(isartist){
-            navigate('/playlist', { state: { id: id, title: title, albumimg: albmimg ,isartist:true} });
+            navigate('/playlist', { state: { id: id, title: title, albumimg: albmimg ,isartist:isartist,isalbum:isalbum } });
         }
         
     }

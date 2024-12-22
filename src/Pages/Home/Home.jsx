@@ -20,7 +20,7 @@ const Home = () => {
   const token = useSelector((state) => state.auth.token);
   const [isloading, setIsLoading] = useState(true);
 
-  
+
 
 
   setTimeout(() => {
@@ -32,7 +32,6 @@ const Home = () => {
   const [artist, setArtist] = useState([]);
   const [artistTopAlbum, setArtistTopAlbum] = useState([]);
   const userName = useSelector((state) => state.auth.userName);
-  const playlistId = '37i9dQZEVXbMDoHDwVN2tF';
   const [globalImg, setGlobalImg] = useState('');
   const [indiaImg, setIndiaImg] = useState('');
   const [trendingImg, setTrendingImg] = useState('');
@@ -53,7 +52,7 @@ const Home = () => {
     } else {
 
       const storedToken = window.localStorage.getItem('token');
-      console.log('Stored token:', storedToken);  
+      console.log('Stored token:', storedToken);
       if (storedToken) {
         setClientToken(storedToken);
         dispatch(authAction.registerUser(storedToken));
@@ -96,6 +95,8 @@ const Home = () => {
                       const albumPromises = fetchedArtists.map(artist =>
                         apiClient.get(`/artists/${artist.id}/albums`)
                           .then(albumResponse => {
+                            
+                            
                             const firstAlbum = albumResponse.data.items[0];
                             return {
                               id: firstAlbum.id,
@@ -207,6 +208,7 @@ const Home = () => {
                       id={artist.id}
                       isartist={true}
                       artist={artist.artist}
+                      isalbum={true}
                     />
                   ))
                   }

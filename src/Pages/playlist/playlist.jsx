@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import apiClient from '../../spotify';
-import Loading from '../../Pages/Loading/Loading';
-import Card from '../Card/Card';
+import Loading from '../Loading/Loading';
+import Card from '../../components/Card/Card';
 import './index.css';
 
 const Playlist = () => {
   const location = useLocation();
-  let { id, albumimg, title, isartist } = location.state || {};
+  let { id, albumimg, title, isartist, isalbum } = location.state || {};
   const isAuth = useSelector(state => state.auth.isAuthenticated);
   const img = useSelector(state => state.auth.img);
   const username = useSelector((state) => state.auth.userName);
@@ -43,7 +43,17 @@ const Playlist = () => {
     const fetchData = async () => {
       try {
         let playlistRes = [];
-        if (id === 'LikedSongs') {
+        if (isalbum) {
+          const response = await apiClient.get(`/albums/${id}/tracks`);
+          playlistRes = response.data.items.map((item) => ({
+            name: item.name,
+            image: '/svgs/music.png',
+            artist: item.artists[0].name,
+            id: item.id,
+          }));
+
+        }
+        else if (id === 'LikedSongs') {
           const response = await apiClient.get('me/tracks');
           playlistRes = response.data.items.map((item) => ({
             name: item.track.name,
@@ -59,7 +69,7 @@ const Playlist = () => {
             artist: item.track.artists[0].name,
             id: item.track.id,
           }));
-        } else if (isartist && title !== 'Top 50 Global') {
+        } else if (isartist && !isalbum) {
           const response = await apiClient.get(`/artists/${id}/top-tracks?market=US`);
           playlistRes = response.data.tracks.map((item) => ({
             name: item.name,
@@ -108,7 +118,7 @@ const Playlist = () => {
           </h3>
         </div>
       </div>
-      <div className={(isLoading)?"loading":"song-container"}>
+      <div className={(isLoading) ? "loading" : "song-container"}>
         {!isLoading ? showPlaylist() : <Loading />}
       </div>
     </>

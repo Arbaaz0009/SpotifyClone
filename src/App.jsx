@@ -9,7 +9,7 @@ import Loading from "./Pages/Loading/Loading";
 const Home = lazy(() => import("./Pages/Home/Home"));
 const Login = lazy(() => import("./Pages/Auth/Login"));
 const SignUp = lazy(() => import("./Pages/Auth/SignUp"));
-const Playlist = lazy(() => import("./components/playlist/playlist"));
+const Playlist = lazy(() => import("./Pages/playlist/playlist"));
 
 
 const router = createBrowserRouter([
