@@ -32,11 +32,17 @@
 .song-details {
     display: flex;
     flex-direction: column;
+    width: calc(100% - 90px);
 }
 
 .song-title {
     font-size: 14px;
     color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    display: block;
 }
 
 .song-artist {
@@ -96,7 +102,7 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    width: 100%;
+    width: 80%;
 }
 
 .controls {
@@ -106,7 +112,8 @@
     align-items: center;
     width: 100%;
 }
-.controls button {  
+
+.controls button {
     background: none;
     border: none;
     height: max-content;
@@ -162,32 +169,34 @@
     cursor: pointer;
     border-radius: 50%;
 }
+
 @media (max-width: 768px) {
     .SongProgressBar {
-      flex-direction: column;
-      padding: 10px;
+        flex-direction: column;
+        padding: 10px;
     }
-  
+
     .song-info {
-      width: 100%;
-      margin-bottom: 10px;
-      justify-content: center;
+        width: 100%;
+        margin-bottom: 10px;
+        justify-content: center;
     }
-  
+
     .controls-sec {
-      width: 100%;
+        width: 100%;
     }
-  
+
     .progressBarSec {
-      flex-direction: column;
-      width: 100%;
+        flex-direction: column;
+        width: 100%;
     }
-  
+
     .volume-changer {
-      right: 10px;
+        right: 10px;
     }
-  }
-  .album-artSpan{
+}
+
+.album-artSpan {
     width: 80px;
     height: 80px;
     object-fit: cover;
@@ -196,9 +205,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom right,rgb(3, 3, 105),rgb(14, 14, 201),rgb(1, 8, 70));
-  }
-  .album-artSpan svg{
+    background: linear-gradient(to bottom right, rgb(3, 3, 105), rgb(14, 14, 201), rgb(1, 8, 70));
+}
+
+.album-artSpan svg {
     height: 5vh;
     width: 5vh;
-  }
+}

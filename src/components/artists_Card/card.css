@@ -1,6 +1,6 @@
 .card {
-    height: 11vw; /* Changed from 20rem to 20vw */
-    width: 9vw;  /* Changed from 20rem to 20vw */
+    height: 11vw;
+    width: 9vw;  
     display: flex;
     flex-direction: column;
     padding: 1vh;
@@ -14,30 +14,30 @@
   }
   
   .cardlogo {
-    height: 8vw; /* Changed from 7rem to 7vw */
-    width: 8vw;  /* Changed from 7rem to 7vw */
+    height: 8vw;
+    width: 8vw;  
     border-radius: 10px;
   
   }
   
   
   .title {
-    width: 100%;
-  }
-  
-  .title {
-    font-size: 0.9vw; /* Changed from 0.8rem to 1.6vw */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;  
+    display: block;
   }
   
   .playbtn {
     display: flex;
     position: absolute;
     right: 1vw;
-    top: 5vw; /* Changed from 4rem to 8vw */
-    height: 2vw; /* Changed from 2rem to 4vw */
-    width: 2vw;  /* Changed from 2rem to 4vw */
+    top: 5vw;
+    height: 2vw;
+    width: 2vw;
     opacity: 0;
-    transform: translateY(4vw); /* Changed from 20px to 4vw */
+    transform: translateY(4vw);
     transition: opacity 0.5s, transform 0.5s;
   }
   
@@ -46,3 +46,4 @@
     transform: translateY(0);
   }
   
+

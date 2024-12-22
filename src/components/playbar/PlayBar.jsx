@@ -27,10 +27,10 @@ const PlayBar = () => {
           <span className="song-title" >{title ? title : "title"}</span>
           <span className="song-artist">{artist ? artist : 'artist name'}</span>
         </div>:
-        <div className="song-details">
-          <span className="song-title" >title</span>
-          <span className="song-artist">artist name</span>
-        </div>}
+          <div className="song-details">
+            <span className="song-title" >title</span>
+            <span className="song-artist">artist name</span>
+          </div>}
       </div>
 
       <div className="controls-sec">

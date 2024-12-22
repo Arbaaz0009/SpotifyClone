@@ -47,7 +47,19 @@
     vertical-align: middle;
 
 }
-
+.loading{
+    position: relative;
+    right: 0;
+    height: 78vh;
+    width: 100%;
+    background: linear-gradient(to bottom, rgb(0, 0, 113), black);
+    margin: 0.5vw 0 0.5vw 0;
+    border-radius: 0.5vw;
+    padding: 0.3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .song-container {
 
     position: relative;
