@@ -3,13 +3,13 @@ let Token = localStorage.getItem("token");
 const initialState = Token
   ? {
       isAuthenticated: true,
-      token: Token,
+      token: Token || null,
       userName: "",
       img: "",
     }
   : {
       isAuthenticated: false,
-      token: "",
+      token: null,
       userName: "",
       img: "",
     };

@@ -23,7 +23,7 @@ const Home = () => {
   useEffect(()=>{
     apiClient.get('/me') 
     .then(response => {
-      if (response.status !== 200) {
+      if (response.status !== 200 && token === null) {
         navigate('/login');
       } else {
         console.log(response.data);
