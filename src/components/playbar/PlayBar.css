@@ -212,3 +212,107 @@
     height: 5vh;
     width: 5vh;
 }
+@media (max-width: 768px) {
+    .SongProgressBar {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .song-info {
+        width: 100%;
+        margin-bottom: 10px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .album-art, .album-artSpan {
+        width: 60px;
+        height: 60px;
+    }
+
+    .song-details {
+        width: calc(100% - 70px);
+    }
+
+    .progressBarSec {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .progress-bar {
+        width: 90%;
+    }
+
+    .controls-sec {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .controls {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .volume-changer {
+        right: 5px;
+        bottom: 120px;
+        transform: rotateZ(90deg);
+        width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .SongProgressBar {
+        flex-direction: column;
+        padding: 8px;
+    }
+
+    .song-info {
+        width: 100%;
+        margin-bottom: 5px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .album-art, .album-artSpan {
+        width: 50px;
+        height: 50px;
+    }
+
+    .song-details {
+        width: calc(100% - 60px);
+    }
+
+    .song-title {
+        font-size: 12px;
+    }
+
+    .song-artist {
+        font-size: 10px;
+    }
+
+    .progressBarSec {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .progress-bar {
+        width: 90%;
+    }
+
+    .controls-sec {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .controls {
+        justify-content: space-between;
+    }
+
+    .volume-changer {
+        right: 5px;
+        bottom: 100px;
+        transform: rotateZ(90deg);
+        width: 70px;
+    }
+}

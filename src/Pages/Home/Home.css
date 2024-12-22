@@ -88,3 +88,64 @@
 .items::-webkit-scrollbar{
   width: 0;
 }
+@media (max-width: 768px) {
+  .left_container {
+    width: 40vw;
+    margin: 2vw 0;
+  }
+
+  .mid {
+    width: 0.5vw;
+  }
+
+  .right_container {
+    height: auto;
+    width: 100%;
+    margin: 2vw 0;
+  }
+
+  .playlist-sec,
+  .artist-sec {
+    height: auto;
+    width: 100%;
+    margin: 2vw 0;
+  }
+
+  .items {
+    width: 100vw;
+    height: auto;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .left_container {
+    width: 70vw;
+    margin: 3vw 0;
+  }
+
+  .mid {
+    width: 1vw;
+  }
+
+  .right_container {
+    height: auto;
+    width: 100%;
+    margin: 3vw 0;
+  }
+
+  .playlist-sec,
+  .artist-sec {
+    height: auto;
+    width: 100%;
+    margin: 3vw 0;
+  }
+
+  .items {
+    width: 100vw;
+    height: auto;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}

@@ -93,3 +93,51 @@
     font-size: 14px;
     margin-top: 10px;
 }
+@media (max-width: 768px) {
+    .loginform {
+        height: auto;
+        padding: 20px;
+        background: linear-gradient(to bottom, #2f2f2f, #000000);
+    }
+
+    .loginpage {
+        width: 80vw;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .loginpage input {
+        width: 80vw;
+        height: 2.5rem;
+    }
+
+    .loginpage button {
+        width: 80vw;
+        margin: 1rem;
+        padding: 10px;
+    }
+
+    .links {
+        width: 80vw;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 480px) {
+    .loginpage {
+        width: 90vw;
+    }
+
+    .loginpage input {
+        width: 90vw;
+        height: 2.5rem;
+    }
+
+    .loginpage button {
+        width: 90vw;
+    }
+
+    .links {
+        width: 90vw;
+    }
+}

@@ -39,7 +39,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px red solid ; */
 }
 
 .addbtn {
@@ -102,7 +101,6 @@
 .list_search svg {
   height: 3vh;
   width: 3vh;
-
 }
 
 .list_search:hover {
@@ -149,7 +147,6 @@
 #playlist {
   border-radius: 0.2vw;
   height: 8vh;
-
   display: flex;
   padding: 0.4vw;
   cursor: pointer;
@@ -236,4 +233,149 @@
   background: linear-gradient(to bottom left,rgb(0, 0, 108),rgb(21, 11, 69),black);
   padding: 0.4vw;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .library_btn {
+    width: 20vw;
+    height: 5vh;
+    transform: scale(1);
+  }
+
+  .library_btn svg {
+    height: 5vh;
+    width: 5vh;
+  }
+
+  .library_btn span {
+    margin-left: 0.5vh;
+  }
+
+  .topcontainer {
+    height: 5vh;
+  }
+
+  .filter_btn {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .btn {
+    height: 6vh;
+    width: 12vw;
+    border-radius: 2vw;
+  }
+
+  .list_search {
+    width: 6vh;
+    height: 6vh;
+  }
+
+  .list_recents {
+    width: 20vw;
+  }
+
+  #playlistContainer {
+    height: 40vh;
+  }
+
+  #playlist {
+    height: 10vh;
+    padding: 1vw;
+  }
+
+  #playlist .logo {
+    height: 8vh;
+    width: 16vw;
+  }
+
+  #playlist .title {
+    width: 60vw;
+  }
+
+  #playlist .title p {
+    font-size: small;
+  }
+
+  .heartlogo {
+    height: 8vh;
+    width: 16vw;
+  }
+
+  .addplaylist {
+    height: 3vh;
+    width: 30vw;
+    top: 5vh;
+  }
+
+  .defaultPlaylist {
+    height: 10vh;
+    padding: 1vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .library_btn {
+    width: 25vw;
+    height: 7vh;
+  }
+
+  .library_btn svg {
+    height: 7vh;
+    width: 7vh;
+  }
+
+  .library_btn span {
+    margin-left: 1vh;
+  }
+
+  .topcontainer {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .btn {
+    height: 8vh;
+    width: 20vw;
+    border-radius: 3vw;
+  }
+
+  .list_search {
+    width: 8vh;
+    height: 8vh;
+  }
+
+  .list_recents {
+    width: 25vw;
+  }
+
+  #playlist {
+    height: 12vh;
+    padding: 2vw;
+  }
+
+  #playlist .logo {
+    height: 10vh;
+    width: 20vw;
+  }
+
+  #playlist .title {
+    width: 80vw;
+  }
+
+  .heartlogo {
+    height: 10vh;
+    width: 20vw;
+  }
+
+  .addplaylist {
+    height: 4vh;
+    width: 40vw;
+    top: 6vh;
+  }
+
+  .defaultPlaylist {
+    height: 12vh;
+    padding: 2vw;
+  }
 }

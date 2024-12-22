@@ -1,6 +1,6 @@
 .card {
-  height: 11vw; /* Changed from 20rem to 20vw */
-  width: 9vw;  /* Changed from 20rem to 20vw */
+  height: 11vw;
+  width: 9vw;
   padding: 1vh;
   border-radius: 10px;
   position: relative;
@@ -12,34 +12,98 @@
 }
 
 .cardlogo {
-  height: 8vw; /* Changed from 7rem to 7vw */
-  width: 8vw;  /* Changed from 7rem to 7vw */
+  height: 8vw;
+  width: 8vw;
   border-radius: 10px;
-
 }
-
 
 .title {
   width: 100%;
-}
-
-.title {
-  font-size: 0.9vw; /* Changed from 0.8rem to 1.6vw */
+  font-size: 0.9vw;
 }
 
 .playbtn {
   display: flex;
   position: absolute;
   right: 1vw;
-  top: 5vw; /* Changed from 4rem to 8vw */
-  height: 2vw; /* Changed from 2rem to 4vw */
-  width: 2vw;  /* Changed from 2rem to 4vw */
+  top: 5vw;
+  height: 2vw;
+  width: 2vw;
   opacity: 0;
-  transform: translateY(4vw); /* Changed from 20px to 4vw */
+  transform: translateY(4vw);
   transition: opacity 0.5s, transform 0.5s;
 }
 
 .playbtn.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    height: 20vw;
+    width: 15vw;
+    padding: 2vh;
+  }
+
+  .cardlogo {
+    height: 15vw;
+    width: 15vw;
+  }
+
+  .title {
+    font-size: 1.2vw;
+  }
+
+  .playbtn {
+    height: 4vw;
+    width: 4vw;
+    top: 7vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card {
+    height: 25vw;
+    width: 18vw;
+    padding: 3vh;
+  }
+
+  .cardlogo {
+    height: 18vw;
+    width: 18vw;
+  }
+
+  .title {
+    font-size: 1.5vw;
+  }
+
+  .playbtn {
+    height: 5vw;
+    width: 5vw;
+    top: 10vw;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .card {
+    height: 10vw;
+    width: 8vw;
+    padding: 1.5vh;
+  }
+
+  .cardlogo {
+    height: 7vw;
+    width: 7vw;
+  }
+
+  .title {
+    font-size: 1vw;
+  }
+
+  .playbtn {
+    height: 2.5vw;
+    width: 2.5vw;
+    top: 4vw;
+  }
 }

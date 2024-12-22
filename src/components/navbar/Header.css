@@ -1,177 +1,262 @@
-
 .navbar {
-    position: relative;
-    height: 3rem;
-    max-width: 100%;
-    padding: 0.5rem 1.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0.5rem;
+  position: relative;
+  height: 3rem;
+  max-width: 100%;
+  padding: 0.5rem 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.spotifylogo {
+  transform: scale(2.5);
+  position: absolute;
+  padding-left: 1.2rem;
+  left: 0px;
+  cursor: pointer;
+}
+
+.midbox {
+  display: flex;
+  border-radius: 2rem;
+  height: 3rem;
+  width: 37rem;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.homebox {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background: #1f1f1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.5rem;
+}
+
+.homebtn {
+  transform: scale(1.3);
+  cursor: pointer;
+}
+
+.homebox:hover {
+  transform: scale(110%);
+  filter: brightness(150%);
+}
+
+.searchbox {
+  display: flex;
+  border-radius: 2rem;
+  height: 3rem;
+  width: 28rem;
+  background: #1f1f1f;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.searchbox:hover {
+  filter: brightness(150%);
+}
+
+.searchbox:focus-within {
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.5);
+}
+
+.searchbtn {
+  transform: scale(1.5);
+  float: left;
+  margin: 3%;
+  cursor: pointer;
+}
+
+#searchbox {
+  display: block;
+  height: 2rem;
+  width: 100%;
+  border-radius: 1rem;
+  align-content: center;
+  background: #1f1f1f;
+  border: none;
+  font-size: 1.5rem;
+  font-family: cursive;
+}
+
+#searchbox:focus {
+  border: none;
+  outline: none;
+}
+
+.active {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  background: #1f1f1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.5rem;
+  border: none;
+}
+
+.clearsearch {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  background: #1f1f1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0.5rem;
+  display: none;
+  border: none;
+}
+
+.clearbtn {
+  transform: scale(1.5);
+  filter: brightness(50%);
+  cursor: pointer;
+}
+
+.clearbtn:hover {
+  transform: scale(1.7);
+  filter: brightness(100%);
+}
+
+.signsec {
+  margin: 0.5rem;
+  position: absolute;
+  padding-left: 1.2rem;
+  right: 0rem;
+  cursor: pointer;
+}
+
+.signupbtn {
+  height: 3rem;
+  width: 6rem;
+  background: none;
+  border-radius: 2rem;
+  border: none;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 1rem;
+}
+
+.signupbtn:hover {
+  transform: scale(110%);
+  filter: brightness(150%);
+}
+
+.signinbtn {
+  height: 3rem;
+  width: 6rem;
+  border: 2px solid white;
+  background: white;
+  color: black;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 1rem;
+}
+
+.signinbtn:hover {
+  transform: scale(105%);
+  filter: brightness(90%);
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 0.5rem;
+    margin: 0.2rem;
   }
-  
+
   .spotifylogo {
-    transform: scale(2.5);
-    position: absolute;
-    padding-left: 1.2rem;
-    left: 0px;
-    cursor: pointer;
+    transform: scale(2);
+    padding-left: 0.5rem;
   }
-  
+
   .midbox {
-    display: flex;
-    border-radius: 2rem;
-    height: 3rem;
-    width: 37rem;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 90%;
+    height: auto;
+    flex-direction: column;
+    margin-top: 1rem;
   }
-  
+
   .homebox {
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-    background: #1f1f1f;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 0.5rem;
-  
+    height: 2.5rem;
+    width: 2.5rem;
+    margin: 0.2rem 0;
   }
-  
-  .homebtn {
-    transform: scale(1.3);
-    cursor: pointer;
-  }
-  
-  .homebox:hover {
-    transform: scale(110%);
-    filter: brightness(150%);
-  }
-  
+
   .searchbox {
-    display: flex;
-    border-radius: 2rem;
-    height: 3rem;
-    width: 28rem;
-    background: #1f1f1f;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 80%;
+    height: 2.5rem;
+    margin-top: 0.5rem;
   }
-  
-  .searchbox:hover {
-    filter: brightness(150%);
-  }
-  
-  .searchbox:focus-within {
-    border: 3px solid #ffffff;
-    box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.5);
-  }
-  
-  .searchbtn {
-    transform: scale(1.5);
-    float: left;
-    margin: 3%;
-    cursor: pointer;
-  }
-  
+
   #searchbox {
-    display: block;
-    height: 2rem;
-    width: 100%;
-    border-radius: 1rem;
-    align-content: center;
-    background: #1f1f1f;
-    border: none;
-    font-size: 1.5rem;
-    font-family: cursive;
+    font-size: 1rem;
   }
-  
-  #searchbox:focus {
-    border: none;
-    outline: none;
-  }
-  
-  .active {
-    height: 2rem;
-    width: 2rem;
-    border-radius: 50%;
-    background: #1f1f1f;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 0.5rem;
-    /* display: none; */
-    border: none;
-  }
-  
-  .clearsearch {
-    height: 2rem;
-    width: 2rem;
-    border-radius: 50%;
-    background: #1f1f1f;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 0.5rem;
-    display: none;
-    border: none;
-  }
-  
-  .clearbtn {
-    transform: scale(1.5);
-    filter: brightness(50%);
-    cursor: pointer;
-  
-  }
-  
-  .clearbtn:hover {
-    transform: scale(1.7);
-    filter: brightness(100%);
-  }
-  
+
   .signsec {
-    margin: 0.5rem;
-    position: absolute;
-    padding-left: 1.2rem;
-    right: 0rem;
-    cursor: pointer;
+    padding-left: 0.5rem;
   }
-  
-  .signupbtn {
-    height: 3rem;
-    width: 6rem;
-    background: none;
-    border-radius: 2rem;
-    border: none;
-    cursor: pointer;
-    font-family: sans-serif;
-    font-size: 1rem;
+
+  .signupbtn, .signinbtn {
+    height: 2.5rem;
+    width: 5rem;
+    font-size: 0.8rem;
   }
-  
-  .signupbtn:hover {
-    transform: scale(110%);
-    filter: brightness(150%);
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.5rem;
   }
-  
-  .signinbtn {
-    height: 3rem;
-    width: 6rem;
-    border: 2px solid white;
-    background: white;
-    color: black;
-    border-radius: 2rem;
-    cursor: pointer;
-    font-family: sans-serif;
-    font-size: 1rem;
+
+  .spotifylogo {
+    transform: scale(1.5);
+    padding-left: 0.2rem;
   }
-  
-  .signinbtn:hover {
-    transform: scale(105%);
-    filter: brightness(90%);
+
+  .midbox {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
   }
+
+  .homebox {
+    height: 2rem;
+    width: 2rem;
+    margin: 0.1rem 0;
+  }
+
+  .searchbox {
+    width: 90%;
+    height: 2rem;
+    margin-top: 0.5rem;
+  }
+
+  #searchbox {
+    font-size: 0.8rem;
+  }
+
+  .signsec {
+    padding-left: 0.2rem;
+  }
+
+  .signupbtn, .signinbtn {
+    height: 2rem;
+    width: 4rem;
+    font-size: 0.7rem;
+  }
+}
