@@ -87,15 +87,16 @@
 
 @media (max-width: 480px) {
   .card {
-    height: 30vw;
-    width: 24vw;
+    height: 28vw;
+    width: 19vw;
+   margin-right: 1vh;
     padding: 1vh;
-    
+    border: 1px solid #ffffff;
   }
 
   .cardlogo {
-    height: 18vw;
-    width: 18vw;
+    height: 14vw;
+    width: 14vw;
   }
 
   .title{

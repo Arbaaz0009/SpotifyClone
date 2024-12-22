@@ -10,7 +10,7 @@
 }
 
 .spotifylogo {
-  transform: scale(10%);
+  transform: scale(2.5);
   position: absolute;
   padding-left: 2.4vw;
   left: 0;
@@ -21,7 +21,8 @@
   display: flex;
   border-radius: 4vh;
   height: 6vh;
-  width: 74vw;
+  width: 35vw;
+ 
   justify-content: space-between;
   align-items: center;
   position: absolute;
@@ -41,12 +42,12 @@
 }
 
 .homebtn {
-  transform: scale(13%);
+  transform: scale(1.3);
   cursor: pointer;
 }
 
 .homebox:hover {
-  transform: scale(1.1);
+  transform: scale(110%);
   filter: brightness(150%);
 }
 
@@ -54,7 +55,7 @@
   display: flex;
   border-radius: 4vh;
   height: 6vh;
-  width: 56vw;
+  width: 25vw;
   background: #1f1f1f;
   align-items: center;
   position: absolute;
@@ -63,7 +64,7 @@
 }
 
 .searchbox:hover {
-  filter: brightness(150%);
+  filter: brightness(1.5);
 }
 
 .searchbox:focus-within {
@@ -72,7 +73,7 @@
 }
 
 .searchbtn {
-  transform: scale(15%);
+  transform: scale(150%);
   float: left;
   margin: 3%;
   cursor: pointer;
@@ -127,7 +128,7 @@
 }
 
 .clearbtn:hover {
-  transform: scale(17%);
+  transform: scale(1.7);
   filter: brightness(100%);
 }
 
@@ -151,7 +152,7 @@
 }
 
 .signupbtn:hover {
-  transform: scale(1.1);
+  transform: scale(110%);
   filter: brightness(150%);
 }
 
@@ -168,7 +169,7 @@
 }
 
 .signinbtn:hover {
-  transform: scale(1.05);
+  transform: scale(150%);
   filter: brightness(90%);
 }
 
@@ -182,7 +183,7 @@
   }
 
   .spotifylogo {
-    transform: scale(8%);
+    transform: scale(2);
     padding-left: 1vw;
   }
 
@@ -231,7 +232,7 @@
   .spotifylogo {
     margin: 1vh;
     margin-top: 2vh;
-    transform: scale(150%);
+    transform: scale(1.5);
 
   }
 
@@ -268,7 +269,7 @@
     text-overflow: ellipsis;
   }
   .searchbtn svg{
-    transform: scale(850%);
+    transform: scale(80%);
   }
   #searchbox {
     font-size: 1.5vh;
