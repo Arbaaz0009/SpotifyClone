@@ -8,39 +8,13 @@ import Playlist from './playlist';
 import './Library.css';
 
 export default function Library({ newPlaylist }) {
-    const [active, setactive] = useState('clearaddplaylist');
-    const [title, settitle] = useState('');
     const [Playlists, setPlaylist] = useState([]);
-    let addplaylist = document.getElementById('addplaylist');
     const isAuth = useSelector((state) => state.auth.isAuthenticated);
     const navigate = useNavigate();
-    function deactivate() {
-        setactive('clearaddplaylist');
-        settitle('');
-    }
-    function activate() {
-        setactive('addplaylist');
-    }
-    function changetitle() {
-        settitle(() => {
-            addplaylist.setCustomValidity("")
-            return addplaylist.value;
-        }
-        );
-    }
-    function getdata(e) {
-        if (e.code === 'Enter') {
-            if (title) {
-                settitle(e.value);
-                newPlaylist(title);
-                deactivate();
-            } else {
-                addplaylist.setCustomValidity("Name cannot be empty!");
-                addplaylist.reportValidity();
-            }
-        }
-    }
-
+    const [ToggleLibrary, setToggleLibrary] = useState(true);
+    
+   
+  
 
     useEffect(() => {
         console.log('library page loaded');
@@ -77,14 +51,14 @@ export default function Library({ newPlaylist }) {
 
     return (
         <>
-            <section className="library_sec">
+            <section className={`library_sec`}>
                 <div className='topcontainer'>
-                    <button className='library_btn' title='Collapse Your Library'>
+                    <button className='library_btn' title='Collapse Your Library' onClick={() => setToggleLibrary(!ToggleLibrary)}>
                         <svg data-encore-id="icon" role="img" aria-hidden="true" viewBox="0 0 24 24" className="Svg-sc-ytk21e-0 bneLcE"
                         ><path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"></path></svg>
-                        <span>Your Library</span>
+                        <span className='library_text'>Your Library</span>
                     </button>
-                    <label htmlFor="addplaylist" className='addbtn' title='Create Playlist or Folder' onClick={activate}>
+                    <label htmlFor="addplaylist" className='addbtn' title='Create Playlist or Folder' >
                         <FontAwesomeIcon icon={faPlus} className='addbtn' />
                     </label>
 

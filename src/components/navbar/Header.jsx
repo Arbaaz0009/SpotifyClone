@@ -45,19 +45,17 @@ export default function Header() {
             <div className='midbox'>
 
                 <Link to='/' className='homebox' title='Home'><FontAwesomeIcon icon={faHouse} className='homebtn' /></Link>
-                <span className='searchbox'>
-
                     <label htmlFor="searchbox" className="searchbtn" title='Search'  >
                         <FontAwesomeIcon icon={faMagnifyingGlass} aria-hidden="true" />
                     </label>
+                <span className='searchbox'>
+
 
                     <input id='searchbox' type='text' placeholder='What do you want to play?'
                         value={searchvalue} onChange={setvalue}
                         onFocus={activate} onBlur={deactivate}></input>
 
-                    <button className={searchactive} title='Clear search field' onClick={toggleclear} type='button' >
-                        <FontAwesomeIcon icon={faXmark} aria-hidden="true" className='clearbtn' />
-                    </button>
+                    
                 </span>
             </div>
 

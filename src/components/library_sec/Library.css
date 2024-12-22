@@ -316,56 +316,70 @@
 
 @media (max-width: 480px) {
   .library_btn {
-    width: 25vw;
-    height: 7vh;
+    margin-left: 2vh;
+    width: 5vw;
+    height: 5vh;
   }
 
+  .library_text{
+    display: none;
+  }
   .library_btn svg {
+    
     height: 7vh;
     width: 7vh;
   }
 
   .library_btn span {
-    margin-left: 1vh;
+    display: none;
   }
 
   .topcontainer {
-    flex-direction: column;
+    flex-direction: row;
     height: auto;
   }
 
+  .addbtn{
+    display: none;
+  }
+  .filter_btn{
+    flex-direction: row;
+  }
   .btn {
-    height: 8vh;
-    width: 20vw;
-    border-radius: 3vw;
+    display: none;
   }
 
   .list_search {
-    width: 8vh;
-    height: 8vh;
+    width: 4vh;
+    margin-left: 1vh;
+    height: 4vh;
   }
 
+  .list_search svg{
+    width: 2vh;
+    height: 2vh ;
+  }
   .list_recents {
-    width: 25vw;
+    display: none;
   }
 
   #playlist {
-    height: 12vh;
+    height: 8vh;
     padding: 2vw;
   }
 
   #playlist .logo {
-    height: 10vh;
-    width: 20vw;
+    height: 6vh;
+    width: 22vw;
   }
 
   #playlist .title {
-    width: 80vw;
+    display: none;
   }
 
   .heartlogo {
-    height: 10vh;
-    width: 20vw;
+    height: 6vh;
+    width: 22vw;
   }
 
   .addplaylist {

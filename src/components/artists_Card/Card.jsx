@@ -33,7 +33,7 @@ const thumnail_card = ({ albmimg, artist, title, id ,isartist,isalbum}) => {
             <img src={albmimg} draggable={false} className='cardlogo' alt="cardlogo" />
 
             <span className='titlebox'>
-                {(title) ? <p className='title'>{title}</p> : <p className='title'>Playlist</p>}
+                {(title) ? <div className='title'>{title}</div> : <div className='title'>Playlist</div>}
                
             </span>
             <img draggable={false} className={`playbtn ${ishovered ? 'show' : ''}`} src='/svgs/playbtn.png' alt="" />

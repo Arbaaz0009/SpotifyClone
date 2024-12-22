@@ -112,7 +112,7 @@ const Playlist = () => {
         <div className="header-data">
           <h3>Playlist</h3>
           <h1>{title}</h1>
-          <h3 style={{ color: 'white' }}>
+          <h3 style={{ color: 'white' }} className="username">
             <img src={img} draggable="false" />
             {username}
           </h3>

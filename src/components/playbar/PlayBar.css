@@ -265,6 +265,7 @@
     .SongProgressBar {
         flex-direction: column;
         padding: 8px;
+        width: 95vw;
     }
 
     .song-info {

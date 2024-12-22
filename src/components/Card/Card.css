@@ -85,25 +85,24 @@
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media (max-width: 480px) {
   .card {
-    height: 10vw;
-    width: 8vw;
-    padding: 1.5vh;
+    height: 30vw;
+    width: 24vw;
+    padding: 1vh;
+    
   }
 
   .cardlogo {
-    height: 7vw;
-    width: 7vw;
+    height: 18vw;
+    width: 18vw;
   }
 
-  .title {
-    font-size: 1vw;
-  }
-
-  .playbtn {
-    height: 2.5vw;
-    width: 2.5vw;
-    top: 4vw;
+  .title{
+    display: inline-block; 
+    font-size: x-small;
+    width: 100%;
+    overflow: none;
+    text-overflow: ellipsis; 
   }
 }

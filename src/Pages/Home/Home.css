@@ -121,7 +121,7 @@
 
 @media (max-width: 480px) {
   .left_container {
-    width: 70vw;
+    width: 15vw;
     margin: 3vw 0;
   }
 
@@ -131,7 +131,7 @@
 
   .right_container {
     height: auto;
-    width: 100%;
+    width: 80vw;
     margin: 3vw 0;
   }
 
@@ -139,13 +139,16 @@
   .artist-sec {
     height: auto;
     width: 100%;
+    border: 1px solid white;
     margin: 3vw 0;
+   
   }
 
   .items {
-    width: 100vw;
+    width: 100%;
     height: auto;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+
+    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
     grid-template-rows: repeat(auto-fill, minmax(120px, 1fr));
   }
 }

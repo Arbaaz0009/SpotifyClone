@@ -47,3 +47,44 @@
   }
   
 
+@media (max-width: 768px) {
+  .card {
+    height: 22vw;
+    width: 18vw;
+    padding: 2vh;
+  }
+
+  .cardlogo {
+    height: 16vw;
+    width: 16vw;
+  }
+
+  .playbtn {
+    right: 2vw;
+    top: 10vw;
+    height: 4vw;
+    width: 4vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    height: 30vw;
+    width: 24vw;
+    padding: 1vh;
+    
+  }
+
+  .cardlogo {
+    height: 18vw;
+    width: 18vw;
+  }
+
+  .title{
+    display: inline-block; 
+    font-size: x-small;
+    width: 100%;
+    overflow: none;
+    text-overflow: ellipsis; 
+  }
+}

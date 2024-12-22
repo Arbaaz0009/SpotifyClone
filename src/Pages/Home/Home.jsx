@@ -147,7 +147,6 @@ const Home = () => {
       <section id='body'>
         <section className='left_container'>
           <Library />
-
         </section>
         <section className='mid'></section>
         <section className='right_container'>
