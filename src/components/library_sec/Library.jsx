@@ -45,9 +45,9 @@ export default function Library({ newPlaylist }) {
     useEffect(() => {
         console.log('library page loaded');
 
-        
+        const fetchData = async () => {
 
-            
+            try {
                 apiClient.get("/me/playlists")
                     .then((response) => {
                         // console.log("this is playlist response:", response);
@@ -61,11 +61,20 @@ export default function Library({ newPlaylist }) {
                             return [...prevPlaylist, Playlist_res];
                         });
                     })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+            }
+            catch (error) {
+                console.error("Error fetching user data:", error);
+                if (error.response && error.response.status === 401) {
+                    navigate("/login");
+                }
+            }
 
-        
+        }
+
+        fetchData();
+
+
+
 
     }, []);
     // console.log(Playlists[0][0].id);
