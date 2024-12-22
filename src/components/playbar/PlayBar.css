@@ -263,9 +263,9 @@
 
 @media (max-width: 480px) {
     .SongProgressBar {
-        flex-direction: column;
+        flex-direction: row;
         padding: 8px;
-        width: 95vw;
+        width: 100vw;
     }
 
     .song-info {
@@ -273,6 +273,7 @@
         margin-bottom: 5px;
         justify-content: center;
         text-align: center;
+        flex-direction: column;
     }
 
     .album-art, .album-artSpan {
@@ -293,10 +294,12 @@
     }
 
     .progressBarSec {
-        flex-direction: column;
+        flex-direction: row;
         width: 100%;
     }
-
+    .progressBarSec>span{
+        font-size:small;
+    }
     .progress-bar {
         width: 90%;
     }
@@ -311,7 +314,8 @@
     }
 
     .volume-changer {
-        right: 5px;
+        right: -5px;
+        top: -7px;
         bottom: 100px;
         transform: rotateZ(90deg);
         width: 70px;
