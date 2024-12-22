@@ -73,7 +73,7 @@ const Home = () => {
         navigate('/login');
       }
     }
-  }, [dispatch, navigate, token]);
+  }, [dispatch, navigate]);
 
 
 
