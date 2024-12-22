@@ -19,9 +19,25 @@ const Home = () => {
   const navigate = useNavigate();
   const token = useSelector((state) => state.auth.token);
   const [isloading, setIsLoading] = useState(true);
-  // console.log(token);
   
-  // setClientToken(token)
+  useEffect(()=>{
+    apiClient.get('/me') 
+    .then(response => {
+      if (response.status !== 200) {
+        navigate('/login');
+      } else {
+        console.log(response.data);
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+      if (error.response && error.response.status === 401) {
+        navigate('/login');
+      }
+    });
+
+  },[]);
+
 
   setTimeout(() => {
     setIsLoading(false);
