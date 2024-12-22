@@ -141,6 +141,8 @@
     height: 13vh;
     margin-top: 1vh;
     width: 13vh;
+    aspect-ratio: 16/9;
+    object-fit: contain;
   }
 
   .header-data h3 {
