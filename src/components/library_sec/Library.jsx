@@ -45,35 +45,23 @@ export default function Library({ newPlaylist }) {
     useEffect(() => {
         console.log('library page loaded');
 
-        const fetchData = async () => {
+        apiClient.get("/me/playlists")
+            .then((response) => {
+                // console.log("this is playlist response:", response);
+                const Playlist_res = response.data.items.map((playlist) => ({
+                    id: playlist.id,
+                    title: playlist.name,
+                    albumimg: playlist.images[0].url,
+                    songs: [],
+                }));
+                setPlaylist((prevPlaylist) => {
+                    return [...prevPlaylist, Playlist_res];
+                });
+            })
+            .catch((error) => {
+                console.log(error);
 
-            try {
-                apiClient.get("/me/playlists")
-                    .then((response) => {
-                        // console.log("this is playlist response:", response);
-                        const Playlist_res = response.data.items.map((playlist) => ({
-                            id: playlist.id,
-                            title: playlist.name,
-                            albumimg: playlist.images[0].url,
-                            songs: [],
-                        }));
-                        setPlaylist((prevPlaylist) => {
-                            return [...prevPlaylist, Playlist_res];
-                        });
-                    })
-            }
-            catch (error) {
-                console.error("Error fetching user data:", error);
-                if (error.response && error.response.status === 401) {
-                    navigate("/login");
-                }
-            }
-
-        }
-
-        fetchData();
-
-
+            })
 
 
     }, []);
@@ -117,7 +105,7 @@ export default function Library({ newPlaylist }) {
             </section>
             <section id='playlistContainer'>
                 {
-                    (isAuth)?<Playlist title="Liked Songs" id="LikedSongs"/>:''
+                    (isAuth) ? <Playlist title="Liked Songs" id="LikedSongs" /> : ''
                 }
                 {
                     (isAuth) ? Playlists[0]?.map((playlist) => (

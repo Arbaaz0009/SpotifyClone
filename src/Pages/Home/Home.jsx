@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, startTransition } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 import apiClient from '../../spotify';
@@ -7,11 +7,10 @@ import { setClientToken, loginEndPoint } from '../../spotify';
 import './Home.css';
 import Header from '../../components/navbar/Header';
 import Library from '../../components/library_sec/Library';
-import Playlist from '../../components/library_sec/playlist';
 import Card from '../../components/artists_Card/Card';
-
 import PlayBar from '../../components/playbar/PlayBar';
-import { setSongAction } from '../../store/setSong';
+import Loading from '../Loading/Loading';
+
 
 
 
@@ -19,6 +18,15 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state) => state.auth.token);
+  const [isloading, setIsLoading] = useState(true);
+  // console.log(token);
+  
+  // setClientToken(token)
+
+  setTimeout(() => {
+    setIsLoading(false);
+  }, 3000);
+
   let isplaylist = !location.pathname.includes("playlist");
   const isAuth = useSelector(state => state.auth.isAuthenticated);
   const [artist, setArtist] = useState([]);
@@ -48,119 +56,81 @@ const Home = () => {
         navigate('/login');
       }
     }
-  }, [dispatch, navigate]);
+  }, [dispatch, navigate, token]);
 
 
 
   useEffect(() => {
-    // apiClient.get('/me/top/tracks')
-    apiClient.get('/me/following?type=artist')
-      // apiClient.get('/me/tracks')
-
-      .then((response) => {
-        // console.log(response);
-        const Artist = response.data.artists.items.map((item) => ({
-          id: item.id,
-          name: item.name,
-          image: item.images[0].url
-        }))
-        setArtist(Artist);
-        // console.log("this is artists", Artist);
-
-      })
-      .catch((error) => {
-        console.log(error);
-
-      })
-  }, []);
-
-  useEffect(() => {
-    // apiClient.get('/me/top/tracks')
-    // apiClient.get('/me/following?type=artist')
-    apiClient.get(`/playlists/5FN6Ego7eLX6zHuCMovIR2`)
-
-      .then((response) => {
-        // console.log(response);
-        const Img = response.data.images[0].url;
-        setGlobalImg(Img);
-      })
-      .catch((error) => {
-        console.log(error);
-
-      })
-  }, []);
-
-  useEffect(() => {
-
-    apiClient.get(`/playlists/3bDJLJzvUBxBV4C7mezz6p`)
-
-      .then((response) => {
-        // console.log("this is top india:",response);
-        const Img = response.data.images[0].url;
-        setIndiaImg(Img);
-      })
-      .catch((error) => {
-        console.log(error);
-
-      })
-  }, []);
-  useEffect(() => {
-    apiClient.get(`/playlists/4JZFUSM0jb3RauYuRPIUp8`)
-
-      .then((response) => {
-        // console.log("this is Trending songs:", response);
-        const Img = response.data.images[0].url;
-        setTrendingImg(Img);
-      })
-      .catch((error) => {
-        console.log(error);
-
-      })
-  }, []);
-
-  useEffect(() => {
-    let isMounted = true;
+    if (token) {
+      // Fetch artist data
+      apiClient.get('/me/following?type=artist')
+        .then(artistResponse => {
+          const fetchedArtists = artistResponse.data.artists.items.map(item => ({
+            id: item.id,
+            name: item.name,
+            image: item.images[0]?.url || 'default-image-url',
+          }));
   
-    async function fetchArtistTopAlbums() {
-      if (!artist || artist.length === 0) return;
+          // Fetch global playlist image
+          return apiClient.get('/playlists/5FN6Ego7eLX6zHuCMovIR2')
+            .then(playlistResponse => {
+              const globalImg = playlistResponse.data.images[0].url;
   
-      try {
-        const albumPromises = artist.map(async (artist) => {
-          const response = await apiClient.get(`/artists/${artist.id}/albums`);
-          const firstAlbum = response.data.items[0];
+              // Fetch India playlist image
+              return apiClient.get('/playlists/3bDJLJzvUBxBV4C7mezz6p')
+                .then(indiaPlaylistResponse => {
+                  const indiaImg = indiaPlaylistResponse.data.images[0]?.url;
   
-          if (firstAlbum) {
-            return {
-              id: firstAlbum.id,
-              name: firstAlbum.name,
-              image: firstAlbum.images[0]?.url || 'No Image Available',
-              artist: artist.name,
-            };
-          }
-          return null;
+                  // Fetch Trending playlist image
+                  return apiClient.get('/playlists/4JZFUSM0jb3RauYuRPIUp8')
+                    .then(trendingPlaylistResponse => {
+                      const trendingImg = trendingPlaylistResponse.data.images[0]?.url;
+  
+                      // Fetch artist top albums
+                      const albumPromises = fetchedArtists.map(artist =>
+                        apiClient.get(`/artists/${artist.id}/albums`)
+                          .then(albumResponse => {
+                            const firstAlbum = albumResponse.data.items[0];
+                            return {
+                              id: firstAlbum.id,
+                              name: firstAlbum.name,
+                              image: firstAlbum.images[0]?.url || 'No Image Available',
+                              artist: artist.name,
+                            };
+                          })
+                      );
+  
+                      // Wait for all albums to be fetched
+                      return Promise.all(albumPromises)
+                        .then(albums => {
+                          startTransition(() => {
+                            setArtist(fetchedArtists);
+                            setGlobalImg(globalImg);
+                            setIndiaImg(indiaImg);
+                            setTrendingImg(trendingImg);
+                            setArtistTopAlbum(albums);
+                          });
+                        });
+                    });
+                });
+            });
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        })
+        .finally(() => {
+          setIsLoading(false); // Data fetching is complete, so stop showing loading
         });
-  
-        const albums = (await Promise.all(albumPromises)).filter(Boolean);
-  
-        if (isMounted) {
-          setArtistTopAlbum((prevAlbums) => [...prevAlbums, ...albums]);
-        }
-      } catch (error) {
-        console.error('Error fetching artist albums:', error);
-      }
     }
-  
-    fetchArtistTopAlbums();
-  
-    return () => {
-      isMounted = false; // Cleanup on unmount
-    };
-  }, [artist]);
+  }, [token]); // This will trigger the effect when the token is available
   
 
 
-  // console.log(artistTopAlbum);
 
+
+  if (isloading) {
+    return (<Loading />);
+  }
 
   return (
     <>
@@ -245,6 +215,11 @@ const Home = () => {
 
     </>
   );
+
+
+
+
+
 };
 
 export default Home;

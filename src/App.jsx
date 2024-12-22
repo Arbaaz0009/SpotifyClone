@@ -2,14 +2,16 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Home from "./Pages/Home/Home";
-import Login from "./Pages/Auth/Login";
-import SignUp from "./Pages/Auth/SignUp";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Playlist from "./components/playlist/playlist";
+import { lazy, Suspense } from "react";
 import './App.css';
+import Loading from "./Pages/Loading/Loading";
+
+const Home = lazy(() => import("./Pages/Home/Home"));
+const Login = lazy(() => import("./Pages/Auth/Login"));
+const SignUp = lazy(() => import("./Pages/Auth/SignUp"));
+const Playlist = lazy(() => import("./components/playlist/playlist"));
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,7 +40,11 @@ function App() {
   console.log("app.jsx loaded");
 
 
-  return <RouterProvider router={router} />
+  return (
+    <Suspense fallback={<Loading/>}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
 
 export default App

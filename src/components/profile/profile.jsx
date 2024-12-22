@@ -13,14 +13,20 @@ const Profile = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     console.log('profile page loaded');
-    apiClient.get("me").then((response) => {
+    apiClient.get("me")
+      .then((response) => {
+        const { display_name, images } = response.data;
+        const userName = display_name;
+        const img = images?.[0]?.url || ''; // Safe access and fallback to empty string if no image
 
-      
-      dispatch(authAction.setUserName({
-        userName: response.data.display_name,
-        img:response.data.images[0].url,
-      }));
-    });
+        dispatch(authAction.setUserName({ userName, img }));
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+        // Optionally dispatch an action for error handling or show a notification
+      });
+  
+
   }, []);
 
 
