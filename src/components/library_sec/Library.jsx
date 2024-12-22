@@ -108,7 +108,7 @@ export default function Library({ newPlaylist }) {
             </section>
             <section id='playlistContainer'>
                 {
-                    (isAuth)?<Playlist title="Liked Songs" id="LikedSongs"/>:''
+                    (isAuth)?<Playlist title="Liked Songs" id="LikedSongs"/>:<div className='defaultPlaylist' onClick={handleLogin}> <h1>please Login First</h1> </div>
                 }
                 {
                     (isAuth) ? Playlists[0]?.map((playlist) => (

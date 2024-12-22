@@ -9,16 +9,18 @@ import Header from '../../components/navbar/Header';
 import Library from '../../components/library_sec/Library';
 import Playlist from '../../components/library_sec/playlist';
 import Card from '../../components/artists_Card/Card';
+import useSpotifyAuthHandler from '../Auth/authHandler';
 
 import PlayBar from '../../components/playbar/PlayBar';
 import { setSongAction } from '../../store/setSong';
 
 
 
+
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const token = useSelector((state) => state.auth.token);
+  const token = useSelector((state) => state.auth.isAuthenticated);
   let isplaylist = !location.pathname.includes("playlist");
   const isAuth = useSelector(state => state.auth.isAuthenticated);
   const [artist, setArtist] = useState([]);
@@ -28,26 +30,13 @@ const Home = () => {
   const [globalImg, setGlobalImg] = useState('');
   const [indiaImg, setIndiaImg] = useState('');
   const [trendingImg, setTrendingImg] = useState('');
+
+
+  console.log(token);
+  
+  
+  useSpotifyAuthHandler();
   useEffect(() => {
-    console.log('home page loaded');
-    const hash = window.location.hash;
-    if (hash) {
-      const token = new URLSearchParams(hash.substring(1)).get('access_token');
-      if (token) {
-        dispatch(authAction.registerUser(token));
-        window.localStorage.setItem('token', token);
-        setClientToken(token);
-        navigate('/');
-      }
-    } else {
-      const storedToken = window.localStorage.getItem('token');
-      if (storedToken) {
-        setClientToken(storedToken);
-        dispatch(authAction.registerUser(storedToken));
-      } else {
-        navigate('/login');
-      }
-    }
   }, [dispatch, navigate]);
 
 
