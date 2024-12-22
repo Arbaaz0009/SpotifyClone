@@ -20,24 +20,7 @@ const Home = () => {
   const token = useSelector((state) => state.auth.token);
   const [isloading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    if (token != null) {
-      apiClient.get('/me')
-      .then(response => {
-        if (response.status != 200 && token === null) {
-          navigate('/login');
-        } else {
-          console.log(response.data);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-        if (error.response && error.response.status === 401) {
-          navigate('/login');
-        }
-      });
-    }
-  }, [token]);
+  
 
 
   setTimeout(() => {
@@ -56,16 +39,21 @@ const Home = () => {
   useEffect(() => {
     console.log('home page loaded');
     const hash = window.location.hash;
+
     if (hash) {
+
       const token = new URLSearchParams(hash.substring(1)).get('access_token');
       if (token) {
-        dispatch(authAction.registerUser(token));
+
         window.localStorage.setItem('token', token);
+        dispatch(authAction.registerUser(token));
         setClientToken(token);
         navigate('/');
       }
     } else {
+
       const storedToken = window.localStorage.getItem('token');
+      console.log('Stored token:', storedToken);  
       if (storedToken) {
         setClientToken(storedToken);
         dispatch(authAction.registerUser(storedToken));
@@ -74,6 +62,7 @@ const Home = () => {
       }
     }
   }, [dispatch, navigate]);
+
 
 
 
