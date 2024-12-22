@@ -21,10 +21,10 @@ const Home = () => {
   const [isloading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (token !== null) {
+    if (token != null) {
       apiClient.get('/me')
       .then(response => {
-        if (response.status !== 200 && token === null) {
+        if (response.status != 200 && token === null) {
           navigate('/login');
         } else {
           console.log(response.data);
