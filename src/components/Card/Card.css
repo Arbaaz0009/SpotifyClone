@@ -89,9 +89,8 @@
   .card {
     height: 28vw;
     width: 19vw;
-   margin-right: 1vh;
+    margin-right: 1vh;
     padding: 1vh;
-    border: 1px solid #ffffff;
   }
 
   .cardlogo {
@@ -99,11 +98,11 @@
     width: 14vw;
   }
 
-  .title{
-    display: inline-block; 
+  .title {
+    display: inline-block;
     font-size: x-small;
     width: 100%;
     overflow: none;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
   }
 }
