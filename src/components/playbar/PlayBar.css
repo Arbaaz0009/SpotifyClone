@@ -273,7 +273,7 @@
         margin-bottom: 5px;
         justify-content: center;
         text-align: center;
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .album-art, .album-artSpan {
