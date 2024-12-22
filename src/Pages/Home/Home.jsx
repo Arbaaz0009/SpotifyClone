@@ -19,24 +19,25 @@ const Home = () => {
   const navigate = useNavigate();
   const token = useSelector((state) => state.auth.token);
   const [isloading, setIsLoading] = useState(true);
-  
-  useEffect(()=>{
-    apiClient.get('/me') 
-    .then(response => {
-      if (response.status !== 200 && token === null) {
-        navigate('/login');
-      } else {
-        console.log(response.data);
-      }
-    })
-    .catch(error => {
-      console.error('Error fetching data:', error);
-      if (error.response && error.response.status === 401) {
-        navigate('/login');
-      }
-    });
 
-  },[]);
+  useEffect(() => {
+    if (token !== null) {
+      apiClient.get('/me')
+      .then(response => {
+        if (response.status !== 200 && token === null) {
+          navigate('/login');
+        } else {
+          console.log(response.data);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        if (error.response && error.response.status === 401) {
+          navigate('/login');
+        }
+      });
+    }
+  }, [token]);
 
 
   setTimeout(() => {
@@ -86,22 +87,22 @@ const Home = () => {
             name: item.name,
             image: item.images[0]?.url || 'default-image-url',
           }));
-  
+
           // Fetch global playlist image
           return apiClient.get('/playlists/5FN6Ego7eLX6zHuCMovIR2')
             .then(playlistResponse => {
               const globalImg = playlistResponse.data.images[0].url;
-  
+
               // Fetch India playlist image
               return apiClient.get('/playlists/3bDJLJzvUBxBV4C7mezz6p')
                 .then(indiaPlaylistResponse => {
                   const indiaImg = indiaPlaylistResponse.data.images[0]?.url;
-  
+
                   // Fetch Trending playlist image
                   return apiClient.get('/playlists/4JZFUSM0jb3RauYuRPIUp8')
                     .then(trendingPlaylistResponse => {
                       const trendingImg = trendingPlaylistResponse.data.images[0]?.url;
-  
+
                       // Fetch artist top albums
                       const albumPromises = fetchedArtists.map(artist =>
                         apiClient.get(`/artists/${artist.id}/albums`)
@@ -115,7 +116,7 @@ const Home = () => {
                             };
                           })
                       );
-  
+
                       // Wait for all albums to be fetched
                       return Promise.all(albumPromises)
                         .then(albums => {
@@ -139,7 +140,7 @@ const Home = () => {
         });
     }
   }, [token]); // This will trigger the effect when the token is available
-  
+
 
 
 
