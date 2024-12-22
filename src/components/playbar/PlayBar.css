@@ -287,6 +287,7 @@
 
     .song-title {
         font-size: 12px;
+        text-overflow: ellipsis;
     }
 
     .song-artist {
