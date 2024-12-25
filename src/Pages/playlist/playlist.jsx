@@ -79,6 +79,8 @@ const Playlist = () => {
           }));
         } else {
           const response = await apiClient.get(`playlists/${id}/tracks`);
+          console.log(response);
+          
           playlistRes = response.data.items.map((item) => ({
             name: item.track.name,
             image: item.track.album.images[0].url,
