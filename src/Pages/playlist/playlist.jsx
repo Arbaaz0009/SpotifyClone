@@ -24,7 +24,7 @@ const Playlist = () => {
   }, [isAuth, navigate]);
 
   function showPlaylist() {
-    return songs?.map(({ name, image, artist }, index) => (
+    return songs?.map(({ name, image, artist ,uri}, index) => (
       <Card
         artist={artist}
         isSong
@@ -32,6 +32,7 @@ const Playlist = () => {
         key={index}
         albmimg={image}
         isartist={!isartist}
+        uri={uri}
       />
     ));
   }
@@ -86,6 +87,7 @@ const Playlist = () => {
             image: item.track.album.images[0].url,
             artist: item.track.artists[0].name,
             id: item.track.id,
+            uri:item.track.uri
           }));
         }
 

@@ -19,6 +19,7 @@ const thumnail_card = ({ albmimg, artist, title, id ,isartist,isalbum}) => {
     }
     function updateSong() {
         console.log("clicked");
+    
         
         dispatch(setSongAction.updateSong({ id: id, artist: artist, title: title, img: albmimg }));
     }

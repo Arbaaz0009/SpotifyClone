@@ -13,6 +13,9 @@ const scopes = [
   "user-top-read",
   "user-follow-read",
   "user-follow-modify",
+  'streaming',
+  'user-modify-playback-state',
+  'user-read-currently-playing'
 ];
 
 export const loginEndPoint = `${authEndPoint}?client_id=${ClientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
