@@ -35,29 +35,45 @@ const Home = () => {
   const [globalImg, setGlobalImg] = useState('');
   const [indiaImg, setIndiaImg] = useState('');
   const [trendingImg, setTrendingImg] = useState('');
+
   useEffect(() => {
-    console.log('home page loaded');
+    console.log("Home page loaded");
     const hash = window.location.hash;
+    console.log("This is hash:", hash);
 
     if (hash) {
+      // Extract `access_token` and `expires_in` from the URL hash
+      const params = new URLSearchParams(hash.substring(1));
+      const token = params.get("access_token");
+      const expiresIn = params.get("expires_in"); // Get `expires_in` value
 
-      const token = new URLSearchParams(hash.substring(1)).get('access_token');
-      if (token) {
+      if (token && expiresIn) {
+        // Calculate token expiration time
+        const expirationTime = Date.now() + parseInt(expiresIn, 10) * 1000;
 
-        window.localStorage.setItem('token', token);
+        // Store token and expiration time in localStorage
+        window.localStorage.setItem("token", token);
+        window.localStorage.setItem("tokenExpiration", expirationTime.toString());
+
+        // Dispatch token to state and set the client
         dispatch(authAction.registerUser(token));
         setClientToken(token);
-        navigate('/');
+
+        // Navigate to the home page
+        navigate("/");
       }
     } else {
+      // Handle stored token retrieval
+      const storedToken = window.localStorage.getItem("token");
+      const storedExpiration = window.localStorage.getItem("tokenExpiration");
 
-      const storedToken = window.localStorage.getItem('token');
-      console.log('Stored token:', storedToken);
-      if (storedToken) {
+      if (storedToken && storedExpiration && Date.now() < parseInt(storedExpiration, 10)) {
+        // Token is still valid
         setClientToken(storedToken);
         dispatch(authAction.registerUser(storedToken));
       } else {
-        navigate('/login');
+        // Token is missing or expired
+        navigate("/login");
       }
     }
   }, [dispatch, navigate]);
@@ -95,8 +111,8 @@ const Home = () => {
                       const albumPromises = fetchedArtists.map(artist =>
                         apiClient.get(`/artists/${artist.id}/albums`)
                           .then(albumResponse => {
-                            
-                            
+
+
                             const firstAlbum = albumResponse.data.items[0];
                             return {
                               id: firstAlbum.id,

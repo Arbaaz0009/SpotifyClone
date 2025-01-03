@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMagnifyingGlass, faList } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import apiClient from '../../spotify';
 import Playlist from './playlist';
 import './Library.css';
@@ -91,7 +91,7 @@ export default function Library({ newPlaylist }) {
                             isArtist={false} />
                     )) : <div className='defaultPlaylist' onClick={handleLogin}> <h1>please Login First</h1> </div>
                 }
-
+                <NavLink to="/test"><button>Click To go to test</button></NavLink>
             </section>
         </>);
 
