@@ -11,8 +11,6 @@ const Home = lazy(() => import("./Pages/Home/Home"));
 const Login = lazy(() => import("./Pages/Auth/Login"));
 const SignUp = lazy(() => import("./Pages/Auth/SignUp"));
 const Playlist = lazy(() => import("./Pages/playlist/playlist"));
-const Test = lazy(() => import("./Pages/test/test"));
-const Callback = lazy(() => import("./Pages/callback/Callback"));
 
 // Router configuration
 const router = createBrowserRouter([
@@ -47,23 +45,7 @@ const router = createBrowserRouter([
       </Suspense>
     ),
   },
-  {
-    path: "/test",
-    element: (
-      <Suspense fallback={<Loading />}>
-        <Test />
-      </Suspense>
-    ),
-  },
-  {
-    path: "/callback",
-    element: (
-      <Suspense fallback={<Loading />}>
-        <Callback />
-      </Suspense>
-    ),
-  },
-
+  
 ]);
 
 function App() {
