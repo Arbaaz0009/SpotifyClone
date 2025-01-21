@@ -31,6 +31,9 @@ const PlayBar = () => {
             }
           }).catch(error => console.error('Error playing track:', error));
 
+          if (!response.ok) {
+            throw new Error('Failed to play track');
+          }
           // Fetch the duration of the song
           player.getCurrentState().then(state => {
             if (state) {
