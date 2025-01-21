@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 const useSpotifyPlayer = (token) => {
   const [player, setPlayer] = useState(null);
   const [deviceId, setDeviceId] = useState(null);
-
+  console.log("hook loaded");
+  
   useEffect(() => {
     const script = document.createElement('script');
     script.src = 'https://sdk.scdn.co/spotify-player.js';
