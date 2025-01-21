@@ -4,6 +4,8 @@ const initialState = {
     img:'',
     title:'',
     artist:'',
+    uri:'',
+    id:''
 }
 
 const setSongSlice = createSlice(
@@ -15,7 +17,8 @@ const setSongSlice = createSlice(
             state.img=action.payload.img;
             state.title=action.payload.title;
             state.artist = action.payload.artist ;
-
+            state.uri = action.payload.uri;
+            state.id = action.payload.id;
         }
     },
 

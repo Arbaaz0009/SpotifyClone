@@ -1,8 +1,8 @@
 import axios from "axios";
 const authEndPoint = "https://accounts.spotify.com/authorize";
 const ClientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-// const redirectUri = import.meta.env.VITE_REDIRECT_URI;
-const redirectUri = "http://localhost:5173";
+const redirectUri = import.meta.env.VITE_REDIRECT_URI;
+// const redirectUri = "http://localhost:5173";
 const scopes = [
   "playlist-read-private",
   "user-library-modify",

@@ -24,7 +24,7 @@ const Playlist = () => {
   }, [isAuth, navigate]);
 
   function showPlaylist() {
-    return songs?.map(({ name, image, artist ,uri}, index) => (
+    return songs?.map(({ name, image, artist ,uri,isAwailable}, index) => (
       <Card
         artist={artist}
         isSong
@@ -33,6 +33,7 @@ const Playlist = () => {
         albmimg={image}
         isartist={!isartist}
         uri={uri}
+        isAwailable={isAwailable}
       />
     ));
   }
@@ -46,48 +47,61 @@ const Playlist = () => {
         let playlistRes = [];
         if (isalbum) {
           const response = await apiClient.get(`/albums/${id}/tracks`);
+          console.log(response);
           playlistRes = response.data.items.map((item) => ({
             name: item.name,
             image: '/svgs/music.png',
             artist: item.artists[0].name,
             id: item.id,
+            uri: item.uri,
+            isAwailable: (item.available_markets.length > 0) ? true : false,
           }));
 
         }
         else if (id === 'LikedSongs') {
           const response = await apiClient.get('me/tracks');
+          console.log(response);
           playlistRes = response.data.items.map((item) => ({
             name: item.track.name,
             image: item.track.album.images[0].url,
             artist: item.track.artists[0].name,
             id: item.track.id,
+            uri: item.track.uri,
+            isAwailable: (item.track.available_markets.length > 0) ? true : false,
           }));
         } else if (title === 'Top 50 Global' || title === 'Top 50 Hindi Songs 2024' || title === '2024 Trending Songs') {
           const response = await apiClient.get(`/playlists/${id}/tracks`);
+          console.log(response);
           playlistRes = response.data.items.map((item) => ({
             name: item.track.name,
             image: item.track.album.images[0].url,
             artist: item.track.artists[0].name,
             id: item.track.id,
+            uri: item.track.uri,
+            isAwailable: (item.track.available_markets.length > 0) ? true : false,
           }));
         } else if (isartist && !isalbum) {
           const response = await apiClient.get(`/artists/${id}/top-tracks?market=US`);
+          console.log(response);
           playlistRes = response.data.tracks.map((item) => ({
             name: item.name,
             image: item.album.images[0].url,
             artist: item.artists[0].name,
             id: item.id,
+            uri: item.uri,
+            isAwailable: item.is_playable,
           }));
         } else {
           const response = await apiClient.get(`playlists/${id}/tracks`);
-          console.log(response);
+          // console.log(response);
           
           playlistRes = response.data.items.map((item) => ({
             name: item.track.name,
             image: item.track.album.images[0].url,
             artist: item.track.artists[0].name,
             id: item.track.id,
-            uri:item.track.uri
+            uri:item.track.uri,
+            isAwailable: (item.track.available_markets.length > 0) ? true : false,
           }));
         }
 

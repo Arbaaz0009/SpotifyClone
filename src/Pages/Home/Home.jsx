@@ -8,7 +8,7 @@ import './Home.css';
 import Header from '../../components/navbar/Header';
 import Library from '../../components/library_sec/Library';
 import Card from '../../components/artists_Card/Card';
-import PlayBar from '../../components/playbar/PlayBar';
+import PlayBar from '../../components/playbar/PlayBar.jsx';
 import Loading from '../Loading/Loading';
 
 

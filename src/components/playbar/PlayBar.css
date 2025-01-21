@@ -18,7 +18,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    width: 13%;
+    width: 20%;
 }
 
 .album-art {
@@ -34,13 +34,12 @@
     flex-direction: column;
     width: calc(100% - 90px);
 }
-
 .song-title {
     font-size: 14px;
     color: #fff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    height: max-content;
+    white-space: normal;
+    overflow-wrap: break-word;
     max-width: 100%;
     display: block;
 }
@@ -142,10 +141,7 @@
     outline: none;
     opacity: 0.7;
     transition: opacity 0.2s;
-    position: absolute;
-    transform: rotateZ(90deg);
-    right: 550px;
-    bottom: 134px;
+    
 }
 
 .volume-changer:hover {
@@ -231,7 +227,7 @@
     }
 
     .song-details {
-        width: calc(100% - 70px);
+        display: none;
     }
 
     .progressBarSec {
@@ -256,7 +252,7 @@
     .volume-changer {
         right: 5px;
         bottom: 120px;
-        transform: rotateZ(90deg);
+        /* transform: rotateZ(90deg); */
         width: 80px;
     }
 }
@@ -319,7 +315,7 @@
         right: -5px;
         top: -7px;
         bottom: 100px;
-        transform: rotateZ(90deg);
+        /* transform: rotateZ(90deg); */
         width: 70px;
     }
 }

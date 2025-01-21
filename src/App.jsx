@@ -46,7 +46,7 @@ const App = () => {
     <WebPlaybackSDK
       initialDeviceName="Spotify example"
       getOAuthToken={getOAuthToken}
-      initialVolume={0.5}
+      initialVolume={1}
     >
       <Suspense fallback={<Loading />}>
         <RouterProvider router={router} />
