@@ -1,74 +1,50 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './PlayBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBackwardStep, faForwardStep, faMusic, faPause, faPlay, faShuffle, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
-import { setSongAction } from '../../store/setSong'
 import { useDispatch, useSelector } from 'react-redux';
+import { WebPlaybackSDK, usePlayerDevice, usePlaybackState, useSpotifyPlayer } from 'react-spotify-web-playback-sdk';
+import { SpotifyPlaybackPlayer } from 'react-spotify-playback-player';
+
 const PlayBar = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showVolume, setShowVolume] = useState(false);
-  const isAuth = useSelector(state => state.auth.isAuthenticated)
+  const isAuth = useSelector(state => state.auth.isAuthenticated);
+  const song = useSelector(state => state.setSong);
+  const token = useSelector((state) => state.auth.token);
 
-  let img = useSelector(state => state.setSong.img);
-  let title = useSelector(state => state.setSong.title);
-  let artist = useSelector(state => state.setSong.artist);
+  const getOAuthToken = useCallback(
+    (callback) => callback(token?.replace("Bearer", "").trim()),
+    [token]
+  );
 
+  const device = usePlayerDevice();
+  const player = useSpotifyPlayer();
+  const playback = usePlaybackState();
 
-
+  useEffect(() => {
+    if (player && song.uri) {
+      player.togglePlay()
+        .then(() => {
+          player.queue(song.uri);
+        });
+    }
+  }, [song, player]);
 
   return (
-    <div className="SongProgressBar">
-      <div className="song-info">
-        {(img == '' && isAuth)?
-          <span className='album-artSpan'><FontAwesomeIcon icon={faMusic} /></span> :
-          <img src={img} alt="Album Art" className="album-art" />
-        }
-        {isAuth?<div className="song-details">
-          <span className="song-title" >{title ? title : "title"}</span>
-          <span className="song-artist">{artist ? artist : 'artist name'}</span>
-        </div>:
-          <div className="song-details">
-            <span className="song-title" >title</span>
-            <span className="song-artist">artist name</span>
-          </div>}
+    <WebPlaybackSDK
+      initialDeviceName="Spotify example"
+      getOAuthToken={getOAuthToken}
+      initialVolume={0.5}
+    >
+      <div className="SongProgressBar">
+        <SpotifyPlaybackPlayer
+          playback={playback || undefined}
+          player={player || undefined}
+          deviceIsReady={device?.status}
+        />
       </div>
-
-      <div className="controls-sec">
-        <div className="controls">
-          <button className="play-pause-btn">
-            <FontAwesomeIcon icon={faShuffle} style={{ color: '#1db954' }} />
-          </button>
-          <button className="next-song-btn">
-            <FontAwesomeIcon icon={faForwardStep} style={{ color: '#1db954' }} />
-          </button>
-          <button className="play-pause-btn" onClick={() => setIsPlaying(!isPlaying)}>
-            <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
-          </button>
-          <button className="Volume">
-            <FontAwesomeIcon icon={faBackwardStep} style={{ color: '#1db954' }} />
-          </button>
-          <button className="Volume" onClick={() => setShowVolume(!showVolume)}>
-            <FontAwesomeIcon icon={faVolumeHigh} style={{ color: '#1db954' }} />
-          </button>
-        </div>
-        {showVolume && (
-          <input type="range" min="0" max="100" className="volume-changer" />
-        )}
-        <div className="progressBarSec">
-          <span>{'00:00'}</span>
-          <input
-            type="range"
-            min="0"
-            max="100"
-
-            className="progress-bar"
-          />
-          <span>{'00:00'}</span>
-        </div>
-        <audio style={{ display: 'none' }} />
-
-      </div>
-    </div>
+    </WebPlaybackSDK>
   );
 };
 

@@ -2,15 +2,16 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useCallback } from "react";
 import './App.css';
 import Loading from "./Pages/Loading/Loading";
+import { WebPlaybackSDK } from "react-spotify-web-playback-sdk";
+import { useSelector } from "react-redux";
 
 const Home = lazy(() => import("./Pages/Home/Home"));
 const Login = lazy(() => import("./Pages/Auth/Login"));
 const SignUp = lazy(() => import("./Pages/Auth/SignUp"));
 const Playlist = lazy(() => import("./Pages/playlist/playlist"));
-
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,6 @@ const router = createBrowserRouter([
         element: <Playlist />
       },
     ]
-
   },
   {
     path: "/login",
@@ -32,19 +32,27 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <SignUp />,
   }
-
-
-
 ]);
-function App() {
-  console.log("app.jsx loaded");
 
+const App = () => {
+  const token = useSelector((state) => state.auth.token);
+
+  const getOAuthToken = useCallback(
+    (callback) => callback(token?.replace("Bearer", "").trim()),
+    [token]
+  );
 
   return (
-    <Suspense fallback={<Loading/>}>
-      <RouterProvider router={router} />
-    </Suspense>
+    <WebPlaybackSDK
+      initialDeviceName="Spotify example"
+      getOAuthToken={getOAuthToken}
+      initialVolume={0.5}
+    >
+      <Suspense fallback={<Loading />}>
+        <RouterProvider router={router} />
+      </Suspense>
+    </WebPlaybackSDK>
   );
-}
+};
 
-export default App
+export default App;
