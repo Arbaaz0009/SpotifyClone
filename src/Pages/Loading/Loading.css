@@ -1,4 +1,10 @@
-
+.loading{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .lds-ring,
 .lds-ring div {
   box-sizing: border-box;

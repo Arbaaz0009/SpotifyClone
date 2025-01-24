@@ -11,6 +11,7 @@ const PlayBar = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(50);
+  const [showVolume, setShowVolume] = useState(false);
   const token = useSelector((state) => state.auth.token);
   const isAuth = useSelector(state => state.auth.isAuthenticated);
   const song = useSelector(state => state.setSong);
@@ -18,42 +19,33 @@ const PlayBar = () => {
   const { player, deviceId } = useSpotifyPlayer(token);
 
   useEffect(() => {
-
-    try {
-      async function name() {
-        if (player && deviceId && song.uri) {
-          const response = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
-            method: 'PUT',
-            body: JSON.stringify({ uris: [song.uri] }),
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            }
-          }).catch(error => console.error('Error playing track:', error));
-
-          if (!response.ok) {
-            throw new Error('Failed to play track');
+    async function playSong() {
+      if (player && deviceId && song.uri) {
+        const response = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
+          method: 'PUT',
+          body: JSON.stringify({ uris: [song.uri] }),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
           }
-          // Fetch the duration of the song
-          player.getCurrentState().then(state => {
-            if (state) {
-              setDuration(state.track_window.current_track.duration_ms);
-            }
-          });
+        }).catch(error => console.error('Error playing track:', error));
 
-          // Set the initial volume
-          player.setVolume(volume / 100);
+        if (!response.ok) {
+          throw new Error('Failed to play track');
         }
+
+        player.getCurrentState().then(state => {
+          if (state) {
+            setDuration(state.track_window.current_track.duration_ms);
+            setCurrentTime(state.position);
+          }
+        });
+
+        player.setVolume(volume / 100);
+        setIsPlaying(true);
       }
-      name();
-    } catch (error) {
-      console.error('Error setting song:', error);
-
-    }finally{
-      console.log('Song set successfully');
-      setIsPlaying(true);
     }
-
+    playSong();
   }, [player, deviceId, song.uri, token]);
 
   useEffect(() => {
@@ -62,6 +54,7 @@ const PlayBar = () => {
         player.getCurrentState().then(state => {
           if (state) {
             setCurrentTime(state.position);
+            setDuration(state.track_window.current_track.duration_ms);
           }
         });
       }
@@ -90,8 +83,9 @@ const PlayBar = () => {
   };
 
   const handleVolumeChange = (event) => {
-    setVolume(event.target.value);
-    player.setVolume(volume / 100);
+    const newVolume = event.target.value;
+    setVolume(newVolume);
+    player.setVolume(newVolume / 100);
   };
 
   const formatTime = (ms) => {
@@ -135,16 +129,17 @@ const PlayBar = () => {
           <button className="Volume" onClick={handleVolumeToggle}>
             <FontAwesomeIcon icon={faVolumeHigh} style={{ color: '#1db954' }} />
           </button>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={volume}
-            className="volume-changer"
-            onChange={handleVolumeChange}
-          />
+          {showVolume && (
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={volume}
+              className="volume-changer"
+              onChange={handleVolumeChange}
+            />
+          )}
         </div>
-
 
         <div className="progressBarSec">
           <span>{formatTime(currentTime)}</span>

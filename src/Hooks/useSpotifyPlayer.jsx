@@ -26,7 +26,7 @@ const useSpotifyPlayer = (token) => {
 
       // Playback status updates
       player.addListener('player_state_changed', state => {
-        console.log(state);
+        // console.log(state);
       });
 
       // Ready
