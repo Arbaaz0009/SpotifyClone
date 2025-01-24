@@ -34,6 +34,7 @@
     flex-direction: column;
     width: calc(100% - 90px);
 }
+
 .song-title {
     font-size: 14px;
     color: #fff;
@@ -141,7 +142,7 @@
     outline: none;
     opacity: 0.7;
     transition: opacity 0.2s;
-    
+
 }
 
 .volume-changer:hover {
@@ -208,6 +209,7 @@
     height: 5vh;
     width: 5vh;
 }
+
 @media (max-width: 768px) {
     .SongProgressBar {
         flex-direction: column;
@@ -221,7 +223,8 @@
         text-align: center;
     }
 
-    .album-art, .album-artSpan {
+    .album-art,
+    .album-artSpan {
         width: 60px;
         height: 60px;
     }
@@ -262,17 +265,24 @@
         flex-direction: row;
         padding: 8px;
         width: 100vw;
+        height: 13vh;
     }
 
     .song-info {
-        width: 100%;
+        width: 25vw;
         margin-bottom: 5px;
         justify-content: center;
         text-align: center;
         flex-direction: row;
     }
 
-    .album-art, .album-artSpan {
+    .song-info img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .album-art,
+    .album-artSpan {
         width: 50px;
         height: 50px;
     }
@@ -295,9 +305,11 @@
         flex-direction: row;
         width: 100%;
     }
-    .progressBarSec>span{
-        font-size:small;
+
+    .progressBarSec>span {
+        font-size: small;
     }
+
     .progress-bar {
         width: 90%;
     }
