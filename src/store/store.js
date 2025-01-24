@@ -6,8 +6,6 @@ import setSongSlice from './setSong'
 
 const store = configureStore({
   reducer: {
-    songsData: songDataSlice,
-    playlists: playlistSlice,
     auth: authSlice,
     setSong:setSongSlice,
   }
