@@ -8,7 +8,14 @@ import './style.css';
 
 const Login = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const token = useSelector((state) => state.auth.token);
 
+    useEffect(() => {
+        if (token) {
+            navigate('/');
+        }
+    }, [token, navigate]);
 
     const handleLogin = (e) => {
         e.preventDefault();
