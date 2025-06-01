@@ -11,11 +11,17 @@ import Card from '../../components/artists_Card/Card';
 import PlayBar from '../../components/playbar/PlayBar.jsx';
 import Loading from '../Loading/Loading';
 
+
+
+
 const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state) => state.auth.token);
   const [isloading, setIsLoading] = useState(true);
+
+
+
 
   setTimeout(() => {
     setIsLoading(false);
@@ -29,115 +35,105 @@ const Home = () => {
   const [globalImg, setGlobalImg] = useState('');
   const [indiaImg, setIndiaImg] = useState('');
   const [trendingImg, setTrendingImg] = useState('');
-
   useEffect(() => {
+    console.log('home page loaded');
     const hash = window.location.hash;
+
     if (hash) {
-      try {
-        const params = new URLSearchParams(hash.substring(1));
-        const token = params.get('access_token');
-        const expiresIn = parseInt(params.get('expires_in')) || 3600;
-        const refreshToken = params.get('refresh_token');
 
-        if (!token) {
-          throw new Error('No access token found in URL');
-        }
+      const token = new URLSearchParams(hash.substring(1)).get('access_token');
+      if (token) {
 
-        window.location.hash = "";
-        window.localStorage.setItem("token", token);
-        window.localStorage.setItem("tokenExpiry", expiresIn.toString());
-        if (refreshToken) {
-          window.localStorage.setItem("refreshToken", refreshToken);
-        }
-
-        dispatch(authAction.registerUser({
-          token,
-          expiresIn,
-          refreshToken
-        }));
-        setClientToken(token, expiresIn);
-      } catch (error) {
-        console.error('Error processing auth hash:', error);
-        navigate('/login');
+        window.localStorage.setItem('token', token);
+        dispatch(authAction.registerUser(token));
+        setClientToken(token);
+        navigate('/');
       }
     } else {
-      const storedToken = window.localStorage.getItem("token");
-      const storedExpiry = window.localStorage.getItem("tokenExpiry");
-      const storedRefreshToken = window.localStorage.getItem("refreshToken");
 
+      const storedToken = window.localStorage.getItem('token');
+      console.log('Stored token:', storedToken);
       if (storedToken) {
-        setClientToken(storedToken, parseInt(storedExpiry) || 3600);
-        dispatch(authAction.registerUser({
-          token: storedToken,
-          expiresIn: parseInt(storedExpiry) || 3600,
-          refreshToken: storedRefreshToken
-        }));
+        setClientToken(storedToken);
+        dispatch(authAction.registerUser(storedToken));
       } else {
         navigate('/login');
       }
     }
   }, [dispatch, navigate]);
 
+
+
+
   useEffect(() => {
-    if (!token) return;
+    if (token) {
+      // Fetch artist data
+      apiClient.get('/me/following?type=artist')
+        .then(artistResponse => {
+          const fetchedArtists = artistResponse.data.artists.items.map(item => ({
+            id: item.id,
+            name: item.name,
+            image: item.images[0]?.url || 'default-image-url',
+          }));
 
-    const fetchData = async () => {
-      try {
-        // Fetch artist data
-        const artistResponse = await apiClient.get('/me/following?type=artist');
-        const fetchedArtists = artistResponse.data.artists.items.map(item => ({
-          id: item.id,
-          name: item.name,
-          image: item.images[0]?.url || 'default-image-url',
-        }));
+          // Fetch global playlist image
+          return apiClient.get('/playlists/5FN6Ego7eLX6zHuCMovIR2')
+            .then(playlistResponse => {
+              const globalImg = playlistResponse.data.images[0].url;
 
-        // Fetch global playlist image
-        const globalResponse = await apiClient.get('/playlists/5FN6Ego7eLX6zHuCMovIR2');
-        const globalImg = globalResponse.data.images[0].url;
+              // Fetch India playlist image
+              return apiClient.get('/playlists/3bDJLJzvUBxBV4C7mezz6p')
+                .then(indiaPlaylistResponse => {
+                  const indiaImg = indiaPlaylistResponse.data.images[0]?.url;
 
-        // Fetch India playlist image
-        const indiaResponse = await apiClient.get('/playlists/3bDJLJzvUBxBV4C7mezz6p');
-        const indiaImg = indiaResponse.data.images[0]?.url;
+                  // Fetch Trending playlist image
+                  return apiClient.get('/playlists/4JZFUSM0jb3RauYuRPIUp8')
+                    .then(trendingPlaylistResponse => {
+                      const trendingImg = trendingPlaylistResponse.data.images[0]?.url;
 
-        // Fetch Trending playlist image
-        const trendingResponse = await apiClient.get('/playlists/4JZFUSM0jb3RauYuRPIUp8');
-        const trendingImg = trendingResponse.data.images[0]?.url;
+                      // Fetch artist top albums
+                      const albumPromises = fetchedArtists.map(artist =>
+                        apiClient.get(`/artists/${artist.id}/albums`)
+                          .then(albumResponse => {
+                            
+                            
+                            const firstAlbum = albumResponse.data.items[0];
+                            return {
+                              id: firstAlbum.id,
+                              name: firstAlbum.name,
+                              image: firstAlbum.images[0]?.url || 'No Image Available',
+                              artist: artist.name,
+                            };
+                          })
+                      );
 
-        // Fetch artist top albums
-        const albumPromises = fetchedArtists.map(artist =>
-          apiClient.get(`/artists/${artist.id}/albums`)
-            .then(albumResponse => {
-              const firstAlbum = albumResponse.data.items[0];
-              return {
-                id: firstAlbum.id,
-                name: firstAlbum.name,
-                image: firstAlbum.images[0]?.url || 'No Image Available',
-                artist: artist.name,
-              };
-            })
-        );
-
-        const albums = await Promise.all(albumPromises);
-
-        startTransition(() => {
-          setArtist(fetchedArtists);
-          setGlobalImg(globalImg);
-          setIndiaImg(indiaImg);
-          setTrendingImg(trendingImg);
-          setArtistTopAlbum(albums);
+                      // Wait for all albums to be fetched
+                      return Promise.all(albumPromises)
+                        .then(albums => {
+                          startTransition(() => {
+                            setArtist(fetchedArtists);
+                            setGlobalImg(globalImg);
+                            setIndiaImg(indiaImg);
+                            setTrendingImg(trendingImg);
+                            setArtistTopAlbum(albums);
+                          });
+                        });
+                    });
+                });
+            });
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        })
+        .finally(() => {
+          setIsLoading(false); // Data fetching is complete, so stop showing loading
         });
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        if (error.response?.status === 401) {
-          navigate('/login');
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    };
+    }
+  }, [token]); // This will trigger the effect when the token is available
 
-    fetchData();
-  }, [token, navigate]);
+
+
+
 
   if (isloading) {
     return (<Loading />);
@@ -154,12 +150,15 @@ const Home = () => {
         </section>
         <section className='mid'></section>
         <section className='right_container'>
+
+
           <Outlet />
           {isplaylist && (
             <>
               <div className="artist-sec">
                 <h1>Your Favorite Artists </h1>
                 <div className='items'>
+
                   {artist.map((artist) => (
                     <Card
                       key={artist.id}
@@ -168,7 +167,9 @@ const Home = () => {
                       id={artist.id}
                       isartist={true}
                     />
-                  ))}
+                  ))
+                  }
+
                 </div>
               </div>
               <div className="playlist-sec">
@@ -192,6 +193,7 @@ const Home = () => {
                     isartist={true}
                     id="4JZFUSM0jb3RauYuRPIUp8"
                   />
+
                 </div>
               </div>
               <div className="playlist-sec">
@@ -207,16 +209,24 @@ const Home = () => {
                       artist={artist.artist}
                       isalbum={true}
                     />
-                  ))}
+                  ))
+                  }
+
                 </div>
               </div>
             </>
           )}
         </section>
+        <PlayBar />
       </section>
-      <PlayBar />
+
     </>
   );
+
+
+
+
+
 };
 
 export default Home;
